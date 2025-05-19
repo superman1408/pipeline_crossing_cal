@@ -55,9 +55,18 @@ print("Ratio_of_pipe_dept_and_bore_daimeter:", Ratio_of_pipe_dept_and_bore_daime
 Applied_Design_Surface_Pressure = round(Design_Wheel_Load_From_Tandem_Axle/0.093)/1000
 print("Applied_Design_Surface_Pressure : " , Applied_Design_Surface_Pressure , "MPa")
 
-Borrow_Stress = (Operating_Pressure * (Pipe_Outside_Diameter - Pipe_Wall_Thickness_Including_CA ))/2*Pipe_Wall_Thickness_Including_CA
-print("Borrow_Stress : " , Borrow_Stress , "MPa")
+Barlow_Stress = (Operating_Pressure * (Pipe_Outside_Diameter - Pipe_Wall_Thickness_Including_CA ))/2*Pipe_Wall_Thickness_Including_CA
+print("Borrow_Stress : " , Barlow_Stress , "MPa")
 
 F_E_SMYS = (Design_Factor * Longitudinal_Joint_Factor  * Specified_Minimum_Yield_Strength)
 print("F_E_SMYS : " , F_E_SMYS , "MPa")
+
+# -------------------------------------2) Calculation ------------------------------------------------------------
+
+# -------------------------------------A) Barlow Stress ------------------------------------------------------------
+if Barlow_Stress <= F_E_SMYS:
+    Barlow_Stress_Check = "Allowable"
+else:
+    Barlow_Stress_Check = "Not Allowable"
+print("Barlow_Stress_Check : " , Barlow_Stress_Check)
 
