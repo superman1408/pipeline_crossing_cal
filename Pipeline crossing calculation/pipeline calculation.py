@@ -32,7 +32,12 @@ Applied_Design_Surface_Pressure = 0.478 #MPa
 Thickness_to_diameter_ratio = 0.00984 
 Ratio_of_bore_diameter_and_pipe_diameter = 1.05
 Ratio_of_pipe_dept_and_bore_daimeter = 1.406
-
+Barlow_Stress = 0 #MPa
+# -------------------------------------Circumferential Stress due to Earth Load------------------------------------------------------------
+Earth_Load_Stiffness_Factor = 6330
+Earth_Load_Burial_Factor = 0.47
+Earth_Load_Excavation_Factor = 0.91
+Stress_due_to_Earth_Load = 51.987 #MPa
 # -------------------------------------Calculation ------------------------------------------------------------
 Pipe_Wall_Thickness_Including_CA = (Pipe_Wall_Thickness - Corrosion_Allowance)
 print("Pipe_Wall_Thickness_Including_CA : " , Pipe_Wall_Thickness_Including_CA , "mm")
@@ -70,3 +75,8 @@ else:
     Barlow_Stress_Check = "Not Allowable"
 print("Barlow_Stress_Check : " , Barlow_Stress_Check)
 
+# -------------------------------------B)Circumferential Stress due to Earth Load------------------------------------------------------------
+
+Stress_due_to_Earth_Load = (Earth_Load_Stiffness_Factor * Earth_Load_Burial_Factor * Earth_Load_Excavation_Factor * Soil_Unit_Weight * Pipe_Outside_Diameter) / 1_000_000
+Stress_due_to_Earth_Load = round(Stress_due_to_Earth_Load, 3)
+print("Stress_due_to_Earth_Load :", Stress_due_to_Earth_Load, "MPa")
