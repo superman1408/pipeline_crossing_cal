@@ -38,7 +38,19 @@ Earth_Load_Stiffness_Factor = 6330
 Earth_Load_Burial_Factor = 0.47
 Earth_Load_Excavation_Factor = 0.91
 Stress_due_to_Earth_Load = 51.987 #MPa
+# -------------------------------------C)Cyclic Stresses------------------------------------------------------------
+
+Stiffness_Factor_KHh = 19.8
+Geometry_Factor_GHh = 0.70
+Road_Pavement_Type_Factor = 1
+Road_Axle_Configuration_Factor = 1
+Cyclic_Circumferential_Stress = 9.948
+Stiffness_Factor_KLh = 14.8
+Geometry_Factor_GLh = 0.64
+Cyclic_Longitudinal_Stress = 6.798 #MPa
+
 # -------------------------------------Calculation ------------------------------------------------------------
+
 Pipe_Wall_Thickness_Including_CA = (Pipe_Wall_Thickness - Corrosion_Allowance)
 print("Pipe_Wall_Thickness_Including_CA : " , Pipe_Wall_Thickness_Including_CA , "mm")
 
@@ -69,6 +81,7 @@ print("F_E_SMYS : " , F_E_SMYS , "MPa")
 # -------------------------------------2) Calculation ------------------------------------------------------------
 
 # -------------------------------------A) Barlow Stress ------------------------------------------------------------
+
 if Barlow_Stress <= F_E_SMYS:
     Barlow_Stress_Check = "Allowable"
 else:
@@ -80,3 +93,16 @@ print("Barlow_Stress_Check : " , Barlow_Stress_Check)
 Stress_due_to_Earth_Load = (Earth_Load_Stiffness_Factor * Earth_Load_Burial_Factor * Earth_Load_Excavation_Factor * Soil_Unit_Weight * Pipe_Outside_Diameter) / 1_000_000
 Stress_due_to_Earth_Load = round(Stress_due_to_Earth_Load, 3)
 print("Stress_due_to_Earth_Load :", Stress_due_to_Earth_Load, "MPa")
+
+# -------------------------------------C)Cyclic Stresses------------------------------------------------------------
+
+Cyclic_Circumferential_Stress = (Stiffness_Factor_KHh * Geometry_Factor_GHh * Road_Pavement_Type_Factor * Road_Axle_Configuration_Factor * Impact_Factor * Applied_Design_Surface_Pressure)
+Cyclic_Circumferential_Stress = round(Cyclic_Circumferential_Stress, 3) 
+print("Cyclic_Circumferential_Stress :", Cyclic_Circumferential_Stress, "MPa")
+
+Cyclic_Longitudinal_Stress = (Stiffness_Factor_KLh * Geometry_Factor_GLh * Road_Pavement_Type_Factor * Road_Axle_Configuration_Factor * Impact_Factor * Applied_Design_Surface_Pressure)
+Cyclic_Longitudinal_Stress = round(Cyclic_Longitudinal_Stress, 3) 
+print("Cyclic_Longitudinal_Stress :", Cyclic_Longitudinal_Stress, "MPa")
+
+
+
