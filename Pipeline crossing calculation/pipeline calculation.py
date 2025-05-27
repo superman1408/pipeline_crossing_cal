@@ -25,7 +25,7 @@ Installation_Temperature = 65
 Operating_Temperature = 40
 Design_Wheel_Load_From_Single_Axle = 53.4 #kN
 Design_Wheel_Load_From_Tandem_Axle = 44.5 #kN
-Youngs_Modulus = 210 #GPa
+Youngs_Modulus = 210 #MPa
 Poissons_Ratio = 0.30
 Coefficient_of_Thermal_Expansion = 1.44*10**(-5)  
 Applied_Design_Surface_Pressure = 0.478 #MPa
@@ -54,11 +54,24 @@ Cyclic_Longitudinal_Stress = 6.798 #MPa
 Pipe_Wall_Thickness_Including_CA = (Pipe_Wall_Thickness - Corrosion_Allowance)
 print("Pipe_Wall_Thickness_Including_CA : " , Pipe_Wall_Thickness_Including_CA , "mm")
 
-Bored_Diameter = (Pipe_Outside_Diameter + 51)
-print("Bored_Diameter : " , Bored_Diameter , "mm")
+user_input = input("Consider bored diameter? (yes/no): ").strip().lower()
+consider_bored_diameter = user_input == "yes"
+
+Pipe_Outside_Diameter = 1016 #mm  
+
+if consider_bored_diameter:
+    Bored_Diameter = Pipe_Outside_Diameter + 51
+else:
+    Bored_Diameter = Pipe_Outside_Diameter
+
+print("Bored_Diameter:", Bored_Diameter, "mm")
+
+
+# Bored_Diameter = (Pipe_Outside_Diameter + 51)
+# print("Bored_Diameter : " , Bored_Diameter , "mm")
 
 Thickness_to_diameter_ratio = (Pipe_Wall_Thickness_Including_CA / Pipe_Outside_Diameter)
-Thickness_to_diameter_ratio = round(Thickness_to_diameter_ratio, 4)
+Thickness_to_diameter_ratio = round(Thickness_to_diameter_ratio, 5)
 print("Thickness_to_diameter_ratio : " , Thickness_to_diameter_ratio)
 
 Ratio_of_bore_diameter_and_pipe_diameter = (Bored_Diameter / Pipe_Outside_Diameter)
@@ -105,4 +118,3 @@ Cyclic_Longitudinal_Stress = round(Cyclic_Longitudinal_Stress, 3)
 print("Cyclic_Longitudinal_Stress :", Cyclic_Longitudinal_Stress, "MPa")
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
