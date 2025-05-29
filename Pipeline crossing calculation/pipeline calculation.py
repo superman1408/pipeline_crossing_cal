@@ -117,4 +117,39 @@ Cyclic_Longitudinal_Stress = (Stiffness_Factor_KLh * Geometry_Factor_GLh * Road_
 Cyclic_Longitudinal_Stress = round(Cyclic_Longitudinal_Stress, 3) 
 print("Cyclic_Longitudinal_Stress :", Cyclic_Longitudinal_Stress, "MPa")
 
-# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------The below calculation and formula are taken from file cal_2 and which is edited by tansisha-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#------------D) Circumferential Stress due to Internal Pressurization
+
+
+Circumferential = Stress_due_to_Earth_Load + Cyclic_Circumferential_Stress + Barlow_Stress
+Longitudinal = Cyclic_Longitudinal_Stress - Youngs_Modulus*Coefficient_of_Thermal_Expansion*(Operating_Temperature - Installation_Temperature)+Poissons_Ratio*(Stress_due_to_Earth_Load+Barlow_Stress)
+Radial_Stress = 0
+print("Circumferencial Stress:",Circumferential,"MPa")
+print("Longitudnal Stress:",Longitudinal,"MPa")
+
+#---------------E) Pricipal Stress
+
+
+effective_stress = math.sqrt(1/2*((Circumferential-Longitudinal)**2+(Longitudinal-Radial_Stress)**2+(Radial_Stress-Circumferential)**2))
+print("Effective Stress:",effective_stress,"MPa")
+
+#Criteria Check
+if effective_stress<=Specified_Minimum_Yield_Strength*Design_Factor:
+    print("Allowable")
+else:
+    print("Not Allowable!")
+
+#-----------------F) Fatigue Check
+Fatigue_endurance_Limit_of_Girth_yield = 82.737 #in MPa
+print("Girth Welds criteria:")
+if Cyclic_Longitudinal_Stress<=Fatigue_endurance_Limit_of_Girth_yield*Design_Factor:
+    print("Allowable")
+else:
+    print("Not Allowable!")
+
+Fatigue_endurance_Limit_of_Longitudinal_Weld = 158.57
+print("Longitutnal Welds check:")
+if Cyclic_Circumferential_Stress<=Fatigue_endurance_Limit_of_Longitudinal_Weld*Design_Factor:
+    print("Allowable")
+else:
+    print("Not Allowable!")
