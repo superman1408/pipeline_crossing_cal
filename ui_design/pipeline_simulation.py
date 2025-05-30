@@ -848,7 +848,7 @@ class Ui_MainWindow(object):
         self.gridLayout_5.addWidget(self.PipelineCrossingsimulation_heading, 0, 2, 2, 1)
         self.label_3_logo = QtWidgets.QLabel(self.Header)
         self.label_3_logo.setText("")
-        self.label_3_logo.setPixmap(QtGui.QPixmap(r"pipeline_crossing_cal\ui_design\ashkam.png"))
+        self.label_3_logo.setPixmap(QtGui.QPixmap("pipeline_crossing_cal//Assests//ashkam.png"))
         self.label_3_logo.setObjectName("label_3_logo")
         self.gridLayout_5.addWidget(self.label_3_logo, 1, 0, 1, 1)
         self.gridLayout_7.addWidget(self.Header, 0, 0, 1, 16)
