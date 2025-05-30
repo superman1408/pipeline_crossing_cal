@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.AshkamLogo = QtWidgets.QLabel(self.Header)
         self.AshkamLogo.setStyleSheet("background-color: rgb(11, 119, 130);")
         self.AshkamLogo.setText("")
-        self.AshkamLogo.setPixmap(QtGui.QPixmap("ashkam.png"))
+        self.AshkamLogo.setPixmap(QtGui.QPixmap("Assests//ashkam.png"))
         self.AshkamLogo.setObjectName("AshkamLogo")
         self.gridLayout_18.addWidget(self.AshkamLogo, 0, 0, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
