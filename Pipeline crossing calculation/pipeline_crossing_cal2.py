@@ -71,8 +71,8 @@ Ratio_of_bore_diameter_and_pipe_diameter = (Bored_Diameter / Pipe_Outside_Diamet
 Ratio_of_bore_diameter_and_pipe_diameter = round(Ratio_of_bore_diameter_and_pipe_diameter, 2)
 print("Ratio_of_bore_diameter_and_pipe_diameter : " , Ratio_of_bore_diameter_and_pipe_diameter)
 
-Ratio_of_pipe_dept_and_bore_daimeter = (Depth_of_Cover * 1000) / Bored_Diameter
-Ratio_of_pipe_dept_and_bore_daimeter = round(Ratio_of_pipe_dept_and_bore_diameter, 3)
+Ratio_of_pipe_dept_and_bore_diameter = (Depth_of_Cover * 1000) / Bored_Diameter
+Ratio_of_pipe_dept_and_bore_diameter = round(Ratio_of_pipe_dept_and_bore_diameter, 3)
 print("Ratio_of_pipe_dept_and_bore_daimeter:", Ratio_of_pipe_dept_and_bore_diameter)
 
 Applied_Design_Surface_Pressure = round(Design_Wheel_Load_From_Tandem_Axle/0.093)/1000
@@ -94,7 +94,7 @@ Radial_Stress = 0
 print("Circumferential Stress:",Circumferential,"MPa")
 print("Longitudinal Stress:",Longitudinal,"MPa")
 
-#---------------e) Priciple Stress
+#---------------e) Principle Stress
 
 
 effective_stress = math.sqrt(1/2*((Circumferential-Longitudinal)**2+(Longitudinal-Radial_Stress)**2+(Radial_Stress-Circumferential)**2))
