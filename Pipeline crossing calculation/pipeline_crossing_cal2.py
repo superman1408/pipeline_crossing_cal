@@ -73,7 +73,7 @@ print("Ratio_of_bore_diameter_and_pipe_diameter : " , Ratio_of_bore_diameter_and
 
 Ratio_of_pipe_dept_and_bore_diameter = (Depth_of_Cover * 1000) / Bored_Diameter
 Ratio_of_pipe_dept_and_bore_diameter = round(Ratio_of_pipe_dept_and_bore_diameter, 3)
-print("Ratio_of_pipe_dept_and_bore_daimeter:", Ratio_of_pipe_dept_and_bore_diameter)
+print("Ratio_of_pipe_dept_and_bore_diameter:", Ratio_of_pipe_dept_and_bore_diameter)
 
 Applied_Design_Surface_Pressure = round(Design_Wheel_Load_From_Tandem_Axle/0.093)/1000
 print("Applied_Design_Surface_Pressure : " , Applied_Design_Surface_Pressure , "MPa")
