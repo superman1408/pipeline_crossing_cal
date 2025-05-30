@@ -39,7 +39,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../ASHKAM PVT LTD/ashkam.jpg</pixmap>
+          <pixmap>ashkam.png</pixmap>
          </property>
         </widget>
        </item>
