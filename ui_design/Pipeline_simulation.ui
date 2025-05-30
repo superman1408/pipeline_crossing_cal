@@ -260,7 +260,7 @@
      </layout>
     </item>
     <item row="11" column="0" colspan="2">
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="label_6_copyright">
       <property name="text">
        <string>© 2025 Ashkam Energy Pvt. Ltd. All rights reserved.</string>
       </property>
@@ -316,19 +316,18 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="4" rowspan="3" colspan="2">
-          <widget class="Line" name="line_8">
+         <item row="2" column="3">
+          <spacer name="horizontalSpacer_12">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Horizontal</enum>
            </property>
-          </widget>
-         </item>
-         <item row="0" column="1" rowspan="3" colspan="2">
-          <widget class="Line" name="line_7">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
            </property>
-          </widget>
+          </spacer>
          </item>
          <item row="1" column="2" rowspan="2" colspan="2">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -342,7 +341,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
-              <widget class="QLabel" name="StiffnessFactorKHh_24">
+              <widget class="QLabel" name="StressDuetoEarthLoad">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
                </property>
@@ -372,18 +371,61 @@
            </item>
           </layout>
          </item>
-         <item row="2" column="3">
-          <spacer name="horizontalSpacer_12">
+         <item row="0" column="1" rowspan="3" colspan="2">
+          <widget class="Line" name="line_7">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
+          </widget>
+         </item>
+         <item row="0" column="4" rowspan="3" colspan="2">
+          <widget class="Line" name="line_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-          </spacer>
+          </widget>
+         </item>
+         <item row="0" column="0" rowspan="3">
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QLabel" name="BarlowStress_2">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;(A) BARLOW STRESS:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="barlowStress">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Barlow Stress_S&lt;span style=&quot; vertical-align:sub;&quot;&gt;Hi&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_33barlowStress">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_21">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
+               </property>
+               <property name="text">
+                <string>MPa</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
          <item row="1" column="5" rowspan="2">
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -397,7 +439,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_14">
              <item>
-              <widget class="QLabel" name="StiffnessFactorKHh_25">
+              <widget class="QLabel" name="CyclicCircumferentialStress">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
                </property>
@@ -437,7 +479,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLabel" name="StiffnessFactorKHh_26">
+              <widget class="QLabel" name="CyclicLongitudinalStress">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
                </property>
@@ -455,48 +497,6 @@
              </item>
              <item>
               <widget class="QLabel" name="label_69">
-               <property name="text">
-                <string>MPa</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-         <item row="0" column="0" rowspan="3">
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="QLabel" name="BarlowStress_2">
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;(A) BARLOW STRESS:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
-             <item>
-              <widget class="QLabel" name="StiffnessFactorKHh_23">
-               <property name="styleSheet">
-                <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Barlow Stress_S&lt;span style=&quot; vertical-align:sub;&quot;&gt;Hi&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_33barlowStress">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 255, 255);</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_21">
-               <property name="styleSheet">
-                <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
-               </property>
                <property name="text">
                 <string>MPa</string>
                </property>
@@ -633,7 +633,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_24">
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="label_pipe_outside_diameter">
              <property name="styleSheet">
               <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
              </property>
@@ -835,7 +835,7 @@
        <item row="1" column="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_2">
+          <widget class="QLabel" name="PipeWallThickness_including_CA">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -863,7 +863,7 @@
        <item row="1" column="6">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_8">
+          <widget class="QLabel" name="operatingpressure">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -873,7 +873,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_7">
+          <widget class="QLineEdit" name="lineEdit_6operatingpressure">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -891,7 +891,7 @@
        <item row="1" column="10">
         <layout class="QHBoxLayout" name="horizontalLayout_10">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_18">
+          <widget class="QLabel" name="operating_temperature">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -901,7 +901,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_17">
+          <widget class="QLineEdit" name="lineEdit_6operating_temperature">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -919,7 +919,7 @@
        <item row="2" column="3">
         <layout class="QHBoxLayout" name="horizontalLayout_17">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_3">
+          <widget class="QLabel" name="Boreddiameter">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -929,7 +929,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_2">
+          <widget class="QLineEdit" name="lineEdit_6Boreddiameter">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -947,7 +947,7 @@
        <item row="2" column="6" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout_32">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_12">
+          <widget class="QLabel" name="impactfactor">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -957,7 +957,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_11">
+          <widget class="QLineEdit" name="lineEdit_6impactfactor">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -968,7 +968,7 @@
        <item row="2" column="10">
         <layout class="QHBoxLayout" name="horizontalLayout_39">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_21">
+          <widget class="QLabel" name="Design_wheel_load_from_single_axle">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -978,7 +978,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_20">
+          <widget class="QLineEdit" name="lineEdit_6Design_wheel_load_from_single_axle">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -996,7 +996,7 @@
        <item row="3" column="3">
         <layout class="QHBoxLayout" name="horizontalLayout_21">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_4">
+          <widget class="QLabel" name="soilunitweight">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1006,7 +1006,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_3">
+          <widget class="QLineEdit" name="lineEdit_6soilunitweight">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1015,7 +1015,7 @@
          <item>
           <widget class="QLabel" name="label_27">
            <property name="text">
-            <string>kN/M³</string>
+            <string>kN/m³</string>
            </property>
           </widget>
          </item>
@@ -1024,7 +1024,7 @@
        <item row="3" column="6" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout_30">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_10">
+          <widget class="QLabel" name="designfactor">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1034,7 +1034,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_9">
+          <widget class="QLineEdit" name="lineEdit_6designfactor">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1045,7 +1045,7 @@
        <item row="3" column="10">
         <layout class="QHBoxLayout" name="horizontalLayout_40">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_22">
+          <widget class="QLabel" name="Design_wheel_load_from_tandem_axle">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1055,7 +1055,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_21">
+          <widget class="QLineEdit" name="Design_wheel_load_from_tandem_axle_2">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1073,7 +1073,7 @@
        <item row="4" column="3">
         <layout class="QHBoxLayout" name="horizontalLayout_22">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_5">
+          <widget class="QLabel" name="Modulus_of_soil_reaction">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1083,7 +1083,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_4">
+          <widget class="QLineEdit" name="lineEdit_6Modulus_of_soil_reaction">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1101,7 +1101,7 @@
        <item row="4" column="6" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout_29">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_9">
+          <widget class="QLabel" name="longitudinaljointfactor">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1111,7 +1111,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_8">
+          <widget class="QLineEdit" name="lineEdit_6longitudinaljointfactor">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1122,7 +1122,7 @@
        <item row="4" column="10">
         <layout class="QHBoxLayout" name="horizontalLayout_38">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_20">
+          <widget class="QLabel" name="youngs_modulus">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1132,7 +1132,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_19">
+          <widget class="QLineEdit" name="lineEdit_6youngs_modulus">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1150,7 +1150,7 @@
        <item row="5" column="3">
         <layout class="QHBoxLayout" name="horizontalLayout_23">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_6">
+          <widget class="QLabel" name="resilient_modulus">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1160,7 +1160,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_5">
+          <widget class="QLineEdit" name="lineEdit_6resilient_modulus">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1178,7 +1178,7 @@
        <item row="5" column="6" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout_31">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_11">
+          <widget class="QLabel" name="installation_temperature">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1188,7 +1188,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_10">
+          <widget class="QLineEdit" name="lineEdit_6installation_temperature">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1206,7 +1206,7 @@
        <item row="5" column="10">
         <layout class="QHBoxLayout" name="horizontalLayout_37">
          <item>
-          <widget class="QLabel" name="StiffnessFactorKHh_19">
+          <widget class="QLabel" name="poissons_ratio">
            <property name="styleSheet">
             <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
            </property>
@@ -1216,7 +1216,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_6PipeWallThickness_including_CA_18">
+          <widget class="QLineEdit" name="lineEdit_6poissons_ratio">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1362,7 +1362,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_16">
              <item>
-              <widget class="QLabel" name="StiffnessFactorKHh_28">
+              <widget class="QLabel" name="EarthLoadStiffnessFactor">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
                </property>
@@ -1383,7 +1383,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_18">
              <item>
-              <widget class="QLabel" name="StiffnessFactorKHh_29">
+              <widget class="QLabel" name="EarthLoadBurialFactor">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
                </property>
@@ -1404,7 +1404,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_19">
              <item>
-              <widget class="QLabel" name="StiffnessFactorKHh_30">
+              <widget class="QLabel" name="EarthLoadExcavationFactor">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
                </property>
@@ -1568,7 +1568,7 @@
               <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
              </property>
              <property name="text">
-              <string>Road Axle Configuration Facto_Rr:</string>
+              <string>Road Axle Configuration Factor_Rr:</string>
              </property>
             </widget>
            </item>
@@ -1614,7 +1614,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_13">
            <item>
-            <widget class="QLabel" name="StiffnessFactorKHh_31">
+            <widget class="QLabel" name="radial_stress">
              <property name="styleSheet">
               <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
              </property>
@@ -1624,7 +1624,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_30">
+            <widget class="QLineEdit" name="lineEdit_30radial_stress">
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255);</string>
              </property>
@@ -1715,11 +1715,11 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QGridLayout" name="gridLayout_9">
-       <item row="0" column="0" rowspan="3">
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_13">
          <item row="1" column="0">
-          <widget class="QLabel" name="Circumferential_">
+          <widget class="QLabel" name="Circumferential_stress">
            <property name="font">
             <font>
              <family>Cambria</family>
@@ -1741,7 +1741,7 @@
           </widget>
          </item>
          <item row="1" column="4">
-          <widget class="QLabel" name="Longitudinal">
+          <widget class="QLabel" name="Longitudinal_stress">
            <property name="font">
             <font>
              <family>Cambria</family>
@@ -1776,14 +1776,14 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_38Circumferential_">
+          <widget class="QLineEdit" name="lineEdit_38Circumferential_stress">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
           </widget>
          </item>
          <item row="1" column="5">
-          <widget class="QLineEdit" name="lineEdit_39Longitudinal">
+          <widget class="QLineEdit" name="lineEdit_39Longitudinal_stress">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
@@ -1798,7 +1798,7 @@
          </item>
         </layout>
        </item>
-       <item row="0" column="1" rowspan="3">
+       <item row="0" column="1">
         <spacer name="horizontalSpacer_13">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -1811,14 +1811,14 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="2" rowspan="3" colspan="2">
+       <item row="0" column="2">
         <widget class="Line" name="line_9">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="1" column="3" rowspan="2">
+       <item row="0" column="3">
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
           <widget class="QLabel" name="PrincipleStress_3">
@@ -1830,7 +1830,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_15">
            <item>
-            <widget class="QLabel" name="StiffnessFactorKHh_27">
+            <widget class="QLabel" name="Effective_stresses">
              <property name="styleSheet">
               <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
              </property>
@@ -1840,7 +1840,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_40Effective_stress">
+            <widget class="QLineEdit" name="lineEdit_40Effective_stresses">
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255);</string>
              </property>
@@ -1860,7 +1860,7 @@
          </item>
         </layout>
        </item>
-       <item row="2" column="4">
+       <item row="0" column="4">
         <spacer name="horizontalSpacer_14">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -1888,7 +1888,7 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout_5">
-       <item row="2" column="5">
+       <item row="0" column="3" rowspan="2">
         <spacer name="horizontalSpacer_16">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -1901,39 +1901,7 @@
          </property>
         </spacer>
        </item>
-       <item row="2" column="0" colspan="2">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>../.designer/backup/ashkam.jpg</pixmap>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4" rowspan="3">
-        <widget class="QLabel" name="PipelineCrossingCalulation">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-font: 75 14pt &quot;Candara&quot;;
-background-color: rgb(13, 50, 92);</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#ffffff;&quot;&gt;Pipeline Crossing Simulation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" rowspan="2" colspan="2">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>../.designer/.designer/backup/ashkam.jpg</pixmap>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3" rowspan="2">
+       <item row="0" column="1" rowspan="2">
         <spacer name="horizontalSpacer_15">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -1946,13 +1914,25 @@ background-color: rgb(13, 50, 92);</string>
          </property>
         </spacer>
        </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="label_2">
+       <item row="0" column="2" rowspan="2">
+        <widget class="QLabel" name="PipelineCrossingsimulation_heading">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+font: 75 14pt &quot;Candara&quot;;
+background-color: rgb(13, 50, 92);</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#ffffff;&quot;&gt;Pipeline Crossing Simulation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3_logo">
          <property name="text">
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../../../../../Downloads/ashkam.jpg</pixmap>
+          <pixmap>../../../../../../../Downloads/ashkam.jpg</pixmap>
          </property>
         </widget>
        </item>
@@ -1984,7 +1964,7 @@ color: rgb(255, 255, 255);</string>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
-            <widget class="QLabel" name="Criteria_checkP_3">
+            <widget class="QLabel" name="Criteria_checkP_3_barlow">
              <property name="styleSheet">
               <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
              </property>
@@ -2043,7 +2023,7 @@ color: rgb(255, 255, 255);</string>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_10">
            <item>
-            <widget class="QLabel" name="EarthLoadExcavationFactor_2">
+            <widget class="QLabel" name="Criteria_checkP_1_Fatigue">
              <property name="styleSheet">
               <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
              </property>
@@ -2121,7 +2101,7 @@ color: rgb(255, 255, 255);</string>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
-            <widget class="QLabel" name="Criteria_checkP_2">
+            <widget class="QLabel" name="Criteria_checkP_2_principle">
              <property name="styleSheet">
               <string notr="true">font: 8pt &quot;Cambria&quot;;</string>
              </property>
