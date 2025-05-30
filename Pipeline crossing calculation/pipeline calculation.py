@@ -80,7 +80,7 @@ print("Ratio_of_bore_diameter_and_pipe_diameter : " , Ratio_of_bore_diameter_and
 
 Ratio_of_pipe_dept_and_bore_diameter = (Depth_of_Cover * 1000) / Bored_Diameter
 Ratio_of_pipe_dept_and_bore_diameter = round(Ratio_of_pipe_dept_and_bore_diameter, 3)
-print("Ratio_of_pipe_dept_and_bore_daimeter:", Ratio_of_pipe_dept_and_bore_diameter)
+print("Ratio_of_pipe_dept_and_bore_diameter:", Ratio_of_pipe_dept_and_bore_diameter)
 
 Applied_Design_Surface_Pressure = round(Design_Wheel_Load_From_Tandem_Axle/0.093)/1000
 print("Applied_Design_Surface_Pressure : " , Applied_Design_Surface_Pressure , "MPa")
@@ -117,7 +117,7 @@ Cyclic_Longitudinal_Stress = (Stiffness_Factor_KLh * Geometry_Factor_GLh * Road_
 Cyclic_Longitudinal_Stress = round(Cyclic_Longitudinal_Stress, 3) 
 print("Cyclic_Longitudinal_Stress :", Cyclic_Longitudinal_Stress, "MPa")
 
-# ----------------------------The below calculation and formula are taken from file cal_2 and which is edited by Tansisha-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------The below calculation and formula are taken from file cal_2 and which is edited by Tanisha-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #------------D) Circumferential Stress due to Internal Pressurization
 
 
