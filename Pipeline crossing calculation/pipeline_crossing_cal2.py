@@ -26,7 +26,7 @@ Coefficient_of_Thermal_Expansion = 1.44*10**(-5)
 Applied_Design_Surface_Pressure = 0.478 #MPa
 Thickness_to_diameter_ratio = 0.00984 
 Ratio_of_bore_diameter_and_pipe_diameter = 1.05
-Ratio_of_pipe_dept_and_bore_daimeter = 1.406
+Ratio_of_pipe_dept_and_bore_diameter = 1.406
 Barlow_Stress = 0 #MPa
 # -------------------------------------Circumferential Stress due to Earth Load--------------------------------------------------------------------------------------------------------------
 Earth_Load_Stiffness_Factor = 6330
@@ -72,8 +72,8 @@ Ratio_of_bore_diameter_and_pipe_diameter = round(Ratio_of_bore_diameter_and_pipe
 print("Ratio_of_bore_diameter_and_pipe_diameter : " , Ratio_of_bore_diameter_and_pipe_diameter)
 
 Ratio_of_pipe_dept_and_bore_daimeter = (Depth_of_Cover * 1000) / Bored_Diameter
-Ratio_of_pipe_dept_and_bore_daimeter = round(Ratio_of_pipe_dept_and_bore_daimeter, 3)
-print("Ratio_of_pipe_dept_and_bore_daimeter:", Ratio_of_pipe_dept_and_bore_daimeter)
+Ratio_of_pipe_dept_and_bore_daimeter = round(Ratio_of_pipe_dept_and_bore_diameter, 3)
+print("Ratio_of_pipe_dept_and_bore_daimeter:", Ratio_of_pipe_dept_and_bore_diameter)
 
 Applied_Design_Surface_Pressure = round(Design_Wheel_Load_From_Tandem_Axle/0.093)/1000
 print("Applied_Design_Surface_Pressure : " , Applied_Design_Surface_Pressure , "MPa")
@@ -91,10 +91,10 @@ print("F_E_SMYS : " , F_E_SMYS , "MPa")
 Circumferential = Stress_due_to_Earth_Load + Cyclic_Circumferential_Stress + Barlow_Stress
 Longitudinal = Cyclic_Longitudinal_Stress - Youngs_Modulus*Coefficient_of_Thermal_Expansion*(Operating_Temperature - Installation_Temperature)+Poissons_Ratio*(Stress_due_to_Earth_Load+Barlow_Stress)
 Radial_Stress = 0
-print("Circumferencial Stress:",Circumferential,"MPa")
-print("Longitudnal Stress:",Longitudinal,"MPa")
+print("Circumferential Stress:",Circumferential,"MPa")
+print("Longitudinal Stress:",Longitudinal,"MPa")
 
-#---------------e) Pricipal Stress
+#---------------e) Priciple Stress
 
 
 effective_stress = math.sqrt(1/2*((Circumferential-Longitudinal)**2+(Longitudinal-Radial_Stress)**2+(Radial_Stress-Circumferential)**2))
@@ -115,7 +115,7 @@ else:
     print("Not Allowable!")
 
 Fatigue_endurance_Limit_of_Longitudinal_Weld = 158.57
-print("Longitutnal Welds check:")
+print("Longitudinal Welds check:")
 if Cyclic_Circumferential_Stress<=Fatigue_endurance_Limit_of_Longitudinal_Weld*Design_Factor:
     print("Allowable")
 else:
