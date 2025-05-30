@@ -78,8 +78,8 @@ Ratio_of_bore_diameter_and_pipe_diameter = (Bored_Diameter / Pipe_Outside_Diamet
 Ratio_of_bore_diameter_and_pipe_diameter = round(Ratio_of_bore_diameter_and_pipe_diameter, 2)
 print("Ratio_of_bore_diameter_and_pipe_diameter : " , Ratio_of_bore_diameter_and_pipe_diameter)
 
-Ratio_of_pipe_dept_and_bore_daimeter = (Depth_of_Cover * 1000) / Bored_Diameter
-Ratio_of_pipe_dept_and_bore_daimeter = round(Ratio_of_pipe_dept_and_bore_diameter, 3)
+Ratio_of_pipe_dept_and_bore_diameter = (Depth_of_Cover * 1000) / Bored_Diameter
+Ratio_of_pipe_dept_and_bore_diameter = round(Ratio_of_pipe_dept_and_bore_diameter, 3)
 print("Ratio_of_pipe_dept_and_bore_daimeter:", Ratio_of_pipe_dept_and_bore_diameter)
 
 Applied_Design_Surface_Pressure = round(Design_Wheel_Load_From_Tandem_Axle/0.093)/1000
@@ -148,7 +148,7 @@ else:
     print("Not Allowable!")
 
 Fatigue_endurance_Limit_of_Longitudinal_Weld = 158.57
-print("Longitutnal Welds check:")
+print("Longitudinal Welds check:")
 if Cyclic_Circumferential_Stress<=Fatigue_endurance_Limit_of_Longitudinal_Weld*Design_Factor:
     print("Allowable")
 else:
