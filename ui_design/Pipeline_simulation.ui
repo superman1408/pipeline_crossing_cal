@@ -1978,6 +1978,9 @@ color: rgb(255, 255, 255);</string>
              <property name="text">
               <string>Safe</string>
              </property>
+             <attribute name="buttonGroup">
+              <string notr="true">buttonGroup_4</string>
+             </attribute>
             </widget>
            </item>
            <item>
@@ -1985,6 +1988,9 @@ color: rgb(255, 255, 255);</string>
              <property name="text">
               <string> Not safe</string>
              </property>
+             <attribute name="buttonGroup">
+              <string notr="true">buttonGroup_4</string>
+             </attribute>
             </widget>
            </item>
           </layout>
@@ -2040,6 +2046,9 @@ color: rgb(255, 255, 255);</string>
              <property name="text">
               <string>Safe</string>
              </property>
+             <attribute name="buttonGroup">
+              <string notr="true">buttonGroup</string>
+             </attribute>
             </widget>
            </item>
            <item>
@@ -2050,6 +2059,9 @@ color: rgb(255, 255, 255);</string>
              <property name="text">
               <string>Not Safe</string>
              </property>
+             <attribute name="buttonGroup">
+              <string notr="true">buttonGroup</string>
+             </attribute>
             </widget>
            </item>
           </layout>
@@ -2111,17 +2123,23 @@ color: rgb(255, 255, 255);</string>
             </widget>
            </item>
            <item>
-            <widget class="QRadioButton" name="radioButton_6_not_safe">
-             <property name="text">
-              <string>Not Safe</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="radioButton_5_safe">
+            <widget class="QRadioButton" name="radioButton_6_safe">
              <property name="text">
               <string>Safe</string>
              </property>
+             <attribute name="buttonGroup">
+              <string notr="true">buttonGroup_3</string>
+             </attribute>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_5_not_safe">
+             <property name="text">
+              <string>Not Safe</string>
+             </property>
+             <attribute name="buttonGroup">
+              <string notr="true">buttonGroup_3</string>
+             </attribute>
             </widget>
            </item>
           </layout>
@@ -2277,6 +2295,9 @@ color: rgb(0, 0, 0);</string>
            <property name="text">
             <string>Safe</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup_2</string>
+           </attribute>
           </widget>
          </item>
          <item>
@@ -2287,6 +2308,9 @@ color: rgb(0, 0, 0);</string>
            <property name="text">
             <string>Not Safe</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup_2</string>
+           </attribute>
           </widget>
          </item>
         </layout>
@@ -2370,6 +2394,10 @@ color: rgb(0, 0, 0);</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/new.gif</normaloff>../Assests/new.gif</iconset>
+   </property>
    <property name="text">
     <string>New</string>
    </property>
@@ -2378,6 +2406,10 @@ color: rgb(0, 0, 0);</string>
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/open.gif</normaloff>../Assests/open.gif</iconset>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
@@ -2386,6 +2418,10 @@ color: rgb(0, 0, 0);</string>
    </property>
   </action>
   <action name="actionSave_As">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/save_as.gif</normaloff>../Assests/save_as.gif</iconset>
+   </property>
    <property name="text">
     <string>Save As</string>
    </property>
@@ -2394,6 +2430,10 @@ color: rgb(0, 0, 0);</string>
    </property>
   </action>
   <action name="actionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/close.gif</normaloff>../Assests/close.gif</iconset>
+   </property>
    <property name="text">
     <string>Exit</string>
    </property>
@@ -2402,6 +2442,10 @@ color: rgb(0, 0, 0);</string>
    </property>
   </action>
   <action name="actionReset">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/redo.gif</normaloff>../Assests/redo.gif</iconset>
+   </property>
    <property name="text">
     <string>Reset</string>
    </property>
@@ -2410,6 +2454,10 @@ color: rgb(0, 0, 0);</string>
    </property>
   </action>
   <action name="actionGenerate_Report">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/report.gif</normaloff>../Assests/report.gif</iconset>
+   </property>
    <property name="text">
     <string>Generate Report</string>
    </property>
@@ -2418,11 +2466,19 @@ color: rgb(0, 0, 0);</string>
    </property>
   </action>
   <action name="actionWhat_s_New">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/help.gif</normaloff>../Assests/help.gif</iconset>
+   </property>
    <property name="text">
     <string>What's New?</string>
    </property>
   </action>
   <action name="actionDocumentation">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Assests/document.png</normaloff>../Assests/document.png</iconset>
+   </property>
    <property name="text">
     <string>Documentation</string>
    </property>
@@ -2449,5 +2505,123 @@ color: rgb(0, 0, 0);</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionGenerate_Report</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpen</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDocumentation</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_As</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionReset</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionWhat_s_New</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_4"/>
+ </buttongroups>
 </ui>
