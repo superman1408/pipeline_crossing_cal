@@ -1087,13 +1087,13 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.actionExit.triggered.connect(MainWindow.close) # type: ignore
-        self.actionNew.triggered.connect(MainWindow.close) # type: ignore
-        self.actionGenerate_Report.triggered.connect(MainWindow.close) # type: ignore
-        self.actionOpen.triggered.connect(MainWindow.close) # type: ignore
-        self.actionDocumentation.triggered.connect(MainWindow.close) # type: ignore
-        self.actionSave_As.triggered.connect(MainWindow.close) # type: ignore
-        self.actionReset.triggered.connect(MainWindow.close) # type: ignore
-        self.actionWhat_s_New.triggered.connect(MainWindow.close) # type: ignore
+        #self.actionNew.triggered.connect(MainWindow.close) # type: ignore
+        #self.actionGenerate_Report.triggered.connect(MainWindow.close) # type: ignore
+        #self.actionOpen.triggered.connect(MainWindow.close) # type: ignore
+        #self.actionDocumentation.triggered.connect(MainWindow.close) # type: ignore
+        #self.actionSave_As.triggered.connect(MainWindow.close) # type: ignore
+        #self.actionReset.triggered.connect(MainWindow.close) # type: ignore
+        #self.actionWhat_s_New.triggered.connect(MainWindow.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
