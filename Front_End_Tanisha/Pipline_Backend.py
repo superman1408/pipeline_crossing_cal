@@ -1,8 +1,11 @@
 import sys
 import math
+import time # Import time module for sleep
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
+# --- UI_MainWindow (from PipelineCrossingSimulation.py) ---
+# This class defines the main application window's UI.
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -23,7 +26,7 @@ class Ui_MainWindow(object):
         self.AshkamLogo.setStyleSheet("background-color: rgb(11, 119, 130);")
         self.AshkamLogo.setText("")
         # Placeholder for image path. Ensure 'ashkam.jpg' is accessible or remove this line.
-        # self.AshkamLogo.setPixmap(QtGui.QPixmap("../ASHKAM PVT LTD/ashkam.jpg"))
+        self.AshkamLogo.setPixmap(QtGui.QPixmap("ashkam.png"))
         self.AshkamLogo.setObjectName("AshkamLogo")
         self.gridLayout_18.addWidget(self.AshkamLogo, 0, 0, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -1207,7 +1210,7 @@ class Ui_MainWindow(object):
         self.FatigueEnduranceofGirthYield.setText(_translate("MainWindow", "<html><head/><body><p>Fatigue Endurance Limit Of Girth Yield_(S<span style=\" vertical-align:sub;\">FG</span>):</p></body></html>"))
         self.FatigueEnduranceofLongitudinalWeld.setText(_translate("MainWindow", "<html><head/><body><p>Fatigue Endurance Limit Of Longitudinal Weld_(S<span style=\" vertical-align:sub;\">FL</span>):</p></body></html>"))
         self.CyclicStressInput.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600; text-decoration: underline;\">Cyclic Stress:</span></p></body></html>"))
-        self.StiffnessFactorKhh.setText(_translate("MainWindow", "<html><head/><body><p>Stifness Factor_(K<span style=\" vertical_align:sub;\">Hh</span>):</p></body></html>"))
+        self.StiffnessFactorKhh.setText(_translate("MainWindow", "<html><head/><body><p>Stifness Factor_(K<span style=\" vertical-align:sub;\">Hh</span>):</p></body></html>"))
         self.GeometryFactorGHh.setText(_translate("MainWindow", "<html><head/><body><p>Geometry Factor_(G<span style=\" vertical-align:sub;\">Hh)</span>:</p></body></html>"))
         self.StifnessFactorKLh.setText(_translate("MainWindow", "<html><head/><body><p>Stifness Factor_(K<span style=\" vertical-align:sub;\">Lh</span>):</p></body></html>"))
         self.geometryFactorGLh.setText(_translate("MainWindow", "<html><head/><body><p>Geometry Factor_(G<span style=\" vertical-align:sub;\">Lh</span>):</p></body></html>"))
@@ -1274,6 +1277,233 @@ class Ui_MainWindow(object):
         self.actionDocumentation.setShortcut(_translate("MainWindow", "F1"))
 
 
+# --- Ui_Dialog (from loadingbox.py) ---
+# This class defines the loading dialog's UI.
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(373, 288)
+        Dialog.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        spacerItem = QtWidgets.QSpacerItem(20, 46, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_2.addItem(spacerItem, 0, 1, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(54, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem1, 1, 0, 1, 1)
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.frame = QtWidgets.QFrame(Dialog)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setObjectName("gridLayout")
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem2, 0, 0, 1, 1)
+        self.AshkamLogo = QtWidgets.QLabel(self.frame)
+        self.AshkamLogo.setText("")
+        # Placeholder for image path. Ensure 'ashkam.jpg' is accessible or remove this line.
+        self.AshkamLogo.setPixmap(QtGui.QPixmap("ashkam.png"))
+        self.AshkamLogo.setObjectName("AshkamLogo")
+        self.gridLayout.addWidget(self.AshkamLogo, 0, 1, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem3, 0, 2, 1, 1)
+        self.verticalLayout.addWidget(self.frame)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem4)
+        self.PipelineCrossingSimulation = QtWidgets.QLabel(Dialog)
+        self.PipelineCrossingSimulation.setStyleSheet("font: 18pt \"Cambria\";")
+        self.PipelineCrossingSimulation.setObjectName("PipelineCrossingSimulation")
+        self.verticalLayout.addWidget(self.PipelineCrossingSimulation)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem5)
+        self.Loading = QtWidgets.QLabel(Dialog)
+        self.Loading.setStyleSheet("font: 10pt \"Cambria\";")
+        self.Loading.setObjectName("Loading")
+        self.verticalLayout.addWidget(self.Loading)
+
+        # Add QProgressBar here, below the Loading label
+        self.progressBar = QtWidgets.QProgressBar(Dialog)
+        self.progressBar.setObjectName("progressBar")
+        self.progressBar.setValue(0) # Initial value
+        self.verticalLayout.addWidget(self.progressBar) # Add to the vertical layout
+
+        self.gridLayout_2.addLayout(self.verticalLayout, 1, 1, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(53, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem6, 1, 2, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 45, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_2.addItem(spacerItem7, 2, 1, 1, 1)
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Loading...")) # Changed window title
+        self.PipelineCrossingSimulation.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600; text-decoration: underline;\">Pipeline Crossing Simulation</span></p></body></html>"))
+        self.Loading.setText(_translate("Dialog", "<html><head/><body><p align=\"center\">Loading.....</p></body></html>"))
+
+
+# --- LoadingScreen Class ---
+class LoadingScreen(QtWidgets.QDialog):
+    """
+    A custom loading screen dialog with a progress bar.
+    """
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+        self.setWindowFlags(QtCore.Qt.SplashScreen | QtCore.Qt.FramelessWindowHint) # Make it a splash screen
+        self.setAttribute(QtCore.Qt.WA_DeleteOnClose) # Ensure it's deleted when closed
+
+        self.progress_timer = QtCore.QTimer(self)
+        self.progress_timer.timeout.connect(self.update_progress)
+        self.current_progress = 0
+        self.duration = 5000 # 5 seconds in milliseconds
+        self.interval = 50 # Update every 50 ms
+        self.steps = self.duration // self.interval
+
+    def start_loading(self):
+        """Starts the progress bar animation."""
+        self.progress_timer.start(self.interval)
+
+    def update_progress(self):
+        """Updates the progress bar value."""
+        self.current_progress += 1
+        if self.current_progress <= self.steps:
+            progress_value = int((self.current_progress / self.steps) * 100)
+            self.ui.progressBar.setValue(progress_value)
+        else:
+            self.progress_timer.stop()
+            self.accept() # Close the dialog
+
+
+# Worker Thread for Calculations
+class CalculationWorker(QtCore.QThread):
+    """
+    A QThread subclass to perform calculations in a separate thread,
+    preventing the UI from freezing.
+    """
+    calculation_finished = QtCore.pyqtSignal(dict) # Signal to emit results back to main thread
+    calculation_error = QtCore.pyqtSignal(str) # Signal to emit error messages
+
+    def __init__(self, inputs, parent=None):
+        super().__init__(parent)
+        self.inputs = inputs
+
+    def run(self):
+        """
+        Performs the pipeline stress calculations.
+        Includes a simulated delay.
+        """
+        try:
+            # Unpack inputs
+            pipe_outside_diameter = self.inputs['pipe_outside_diameter']
+            pipe_wall_thickness = self.inputs['pipe_wall_thickness']
+            specified_minimum_yield_strength = self.inputs['specified_minimum_yield_strength']
+            depth_of_cover = self.inputs['depth_of_cover']
+            corrosion_allowance = self.inputs['corrosion_allowance']
+            consider_bored_diameter_in_calc = self.inputs['consider_bored_diameter_in_calc']
+            soil_unit_weight = self.inputs['soil_unit_weight']
+            modulus_of_soil_reaction = self.inputs['modulus_of_soil_reaction']
+            resilient_modulus = self.inputs['resilient_modulus']
+            operating_pressure = self.inputs['operating_pressure']
+            impact_factor = self.inputs['impact_factor']
+            design_factor = self.inputs['design_factor']
+            longitudinal_joint_factor = self.inputs['longitudinal_joint_factor']
+            installation_temperature = self.inputs['installation_temperature']
+            operating_temperature = self.inputs['operating_temperature']
+            design_wheel_load_single_axle = self.inputs['design_wheel_load_single_axle']
+            design_wheel_load_tandem_axle = self.inputs['design_wheel_load_tandem_axle']
+            youngs_modulus = self.inputs['youngs_modulus']
+            poissons_ratio = self.inputs['poissons_ratio']
+            coefficient_of_thermal_expansion = self.inputs['coefficient_of_thermal_expansion']
+            earth_load_stiffness_factor = self.inputs['earth_load_stiffness_factor']
+            earth_load_burial_factor = self.inputs['earth_load_burial_factor']
+            earth_load_excavation_factor = self.inputs['earth_load_excavation_factor']
+            stiffness_factor_khh = self.inputs['stiffness_factor_khh']
+            geometry_factor_ghh = self.inputs['geometry_factor_ghh']
+            stiffness_factor_klh = self.inputs['stiffness_factor_klh']
+            geometry_factor_glh = self.inputs['geometry_factor_glh']
+            road_pavement_type_factor = self.inputs['road_pavement_type_factor']
+            road_axle_configuration_factor = self.inputs['road_axle_configuration_factor']
+            radial_stress = self.inputs['radial_stress']
+            fatigue_endurance_girth_yield = self.inputs['fatigue_endurance_girth_yield']
+            fatigue_endurance_longitudinal_weld = self.inputs['fatigue_endurance_longitudinal_weld']
+
+            # Simulate a time-consuming calculation
+            time.sleep(5) # 5-second delay as requested
+
+            # Perform calculations
+            pipe_wall_thickness_including_ca = (pipe_wall_thickness - corrosion_allowance)
+
+            bored_diameter = 0
+            if consider_bored_diameter_in_calc:
+                bored_diameter = pipe_outside_diameter + 51
+            else:
+                bored_diameter = pipe_outside_diameter
+
+            thickness_to_diameter_ratio = (pipe_wall_thickness_including_ca / pipe_outside_diameter)
+            thickness_to_diameter_ratio = round(thickness_to_diameter_ratio, 5)
+
+            ratio_of_bore_diameter_and_pipe_diameter = (bored_diameter / pipe_outside_diameter)
+            ratio_of_bore_diameter_and_pipe_diameter = round(ratio_of_bore_diameter_and_pipe_diameter, 2)
+
+            ratio_of_pipe_dept_and_bore_diameter = (depth_of_cover * 1000) / bored_diameter
+            ratio_of_pipe_dept_and_bore_diameter = round(ratio_of_pipe_dept_and_bore_diameter, 3)
+
+            applied_design_surface_pressure = round(design_wheel_load_tandem_axle / 0.093) / 1000
+
+            barlow_stress = 0
+            if pipe_wall_thickness_including_ca != 0:
+                barlow_stress = (operating_pressure * (pipe_outside_diameter - pipe_wall_thickness_including_ca)) / (2 * pipe_wall_thickness_including_ca)
+            # No else needed, as it defaults to 0 if division by zero would occur
+            barlow_stress = round(barlow_stress, 3)
+
+            f_e_smys = (design_factor * longitudinal_joint_factor * specified_minimum_yield_strength)
+
+            stress_due_to_earth_load = (earth_load_stiffness_factor * earth_load_burial_factor * earth_load_excavation_factor * soil_unit_weight * pipe_outside_diameter) / 1_000_000
+            stress_due_to_earth_load = round(stress_due_to_earth_load, 3)
+
+            cyclic_circumferential_stress = (stiffness_factor_khh * geometry_factor_ghh * road_pavement_type_factor * road_axle_configuration_factor * impact_factor * applied_design_surface_pressure)
+            cyclic_circumferential_stress = round(cyclic_circumferential_stress, 3)
+
+            cyclic_longitudinal_stress = (stiffness_factor_klh * geometry_factor_glh * road_pavement_type_factor * road_axle_configuration_factor * impact_factor * applied_design_surface_pressure)
+            cyclic_longitudinal_stress = round(cyclic_longitudinal_stress, 3)
+
+            circumferential_stress_s1 = stress_due_to_earth_load + cyclic_circumferential_stress + barlow_stress
+            longitudinal_stress_s2 = cyclic_longitudinal_stress - youngs_modulus * coefficient_of_thermal_expansion * (operating_temperature - installation_temperature) + poissons_ratio * (stress_due_to_earth_load + barlow_stress)
+
+            effective_stress = math.sqrt(1/2*((circumferential_stress_s1 - longitudinal_stress_s2)**2 + \
+                                             (longitudinal_stress_s2 - radial_stress)**2 + \
+                                             (radial_stress - circumferential_stress_s1)**2))
+            effective_stress = round(effective_stress, 3)
+
+            # Prepare results to be sent back
+            results = {
+                'pipe_wall_thickness_including_ca': pipe_wall_thickness_including_ca,
+                'bored_diameter': bored_diameter,
+                'barlow_stress': barlow_stress,
+                'f_e_smys': f_e_smys,
+                'stress_due_to_earth_load': stress_due_to_earth_load,
+                'cyclic_circumferential_stress': cyclic_circumferential_stress,
+                'cyclic_longitudinal_stress': cyclic_longitudinal_stress,
+                'circumferential_stress_s1': circumferential_stress_s1,
+                'longitudinal_stress_s2': longitudinal_stress_s2,
+                'effective_stress': effective_stress,
+                'specified_minimum_yield_strength': specified_minimum_yield_strength,
+                'design_factor': design_factor,
+                'fatigue_endurance_girth_yield': fatigue_endurance_girth_yield,
+                'fatigue_endurance_longitudinal_weld': fatigue_endurance_longitudinal_weld
+            }
+            self.calculation_finished.emit(results)
+
+        except ValueError as e:
+            self.calculation_error.emit(f"Calculation Error: Invalid numerical input. {e}")
+        except Exception as e:
+            self.calculation_error.emit(f"An unexpected error occurred during calculation: {e}")
+
+
 # Main Application Logic
 class MyMainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -1288,6 +1518,9 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.steel_grade_smys = 195 # Default SMYS for Fe 330 (initial value)
         self.selected_codes_standards = "API 1102"
 
+        self.calculation_worker = None # To hold the worker thread instance
+        self.loading_dialog = None # To hold the loading dialog instance
+
         self.connect_signals_slots()
         self.initialize_default_input_values()
 
@@ -1301,7 +1534,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.ui.CodesAndStandards_combobox.currentIndexChanged.connect(self.on_codes_standards_changed)
 
         # Button and Action signals
-        self.ui.Submit.clicked.connect(self.calculate_and_display_results)
+        self.ui.Submit.clicked.connect(self.start_calculation_thread) # Connect to start_calculation_thread
         self.ui.New.triggered.connect(self.new_file)
         self.ui.Open.triggered.connect(self.open_file)
         self.ui.SaveAs.triggered.connect(self.save_file_as)
@@ -1439,7 +1672,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
     def on_steel_grade_changed(self, index):
         """Handles changes in the Steel Grade combobox and updates SMYS."""
         steel_grade_text = self.ui.SteelGrade_Combobox.currentText()
-        
+        # Mapping steel grade text to a specified minimum yield strength (SMYS) in MPa
+        # These values are examples; ensure they match your engineering standards.
         match steel_grade_text:
             case "Fe 330": self.steel_grade_smys = 330
             case "A25": self.steel_grade_smys = 172
@@ -1525,7 +1759,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
                                        "- Implemented combobox selection logic.\n"
                                        "- Added action button functionality.\n"
                                        "- Console output for all inputs.\n"
-                                       "- Corrected Barlow Stress calculation formula.")
+                                       "- Corrected Barlow Stress calculation formula.\n"
+                                       "- Added threading for calculations with a 'Calculating...' dialog.")
 
     def show_documentation(self):
         """Displays application documentation."""
@@ -1601,187 +1836,154 @@ class MyMainWindow(QtWidgets.QMainWindow):
         print("-----------------------------------\n")
 
 
-    def calculate_and_display_results(self):
+    def start_calculation_thread(self):
         """
-        Reads inputs from the UI, performs all pipeline stress calculations,
-        and displays the results and criteria checks in the UI.
+        Initiates the calculation in a separate thread and shows a loading dialog.
         """
-        print("\n--- Starting Calculation ---")
-        # 1. Read all input values from line edits and combobox selections
-        #    Use try-except blocks for numerical inputs to handle invalid entries
+        print("\n--- Starting Calculation Thread ---")
+        # 1. Read all input values from UI
+        inputs = {}
         try:
-            pipe_outside_diameter = float(self.ui.PipeOutsideDiameter_box.text())
-            pipe_wall_thickness = float(self.ui.PipeWallThickness_box.text())
-            # Use the SMYS derived from the combobox handler
-            specified_minimum_yield_strength = self.steel_grade_smys
-            depth_of_cover = float(self.ui.DepthOfCover_box.text())
-            corrosion_allowance = float(self.ui.CorrossionAllowence_box.text())
+            inputs['pipe_outside_diameter'] = float(self.ui.PipeOutsideDiameter_box.text())
+            inputs['pipe_wall_thickness'] = float(self.ui.PipeWallThickness_box.text())
+            inputs['specified_minimum_yield_strength'] = self.steel_grade_smys # From combobox
+            inputs['depth_of_cover'] = float(self.ui.DepthOfCover_box.text())
+            inputs['corrosion_allowance'] = float(self.ui.CorrossionAllowence_box.text())
+            inputs['consider_bored_diameter_in_calc'] = self.consider_bored_diameter_in_calc # From combobox
 
-            soil_unit_weight = float(self.ui.SoilUnitWeight_box.text())
-            modulus_of_soil_reaction = float(self.ui.ModulusOfSoilReaction_box.text())
-            resilient_modulus = float(self.ui.ResilientModulus_box.text())
-            operating_pressure = float(self.ui.OperatingPressure_box.text())
-            impact_factor = float(self.ui.impactFactor_box.text())
-            design_factor = float(self.ui.designFactor_box.text())
-            longitudinal_joint_factor = float(self.ui.LongitudinalJointFactor_box.text())
-            installation_temperature = float(self.ui.InstallationTemperature_box.text())
-            operating_temperature = float(self.ui.OperatingTemperature_box.text())
-            design_wheel_load_single_axle = float(self.ui.DesignWheelLoadFromSingleAxle_box.text())
-            design_wheel_load_tandem_axle = float(self.ui.DesignWheelLoadFromtandemAxle_box.text())
-            youngs_modulus = float(self.ui.YongsModulus_box.text())
-            poissons_ratio = float(self.ui.PoissonsRatio_box.text())
-            coefficient_of_thermal_expansion = float(self.ui.CoefficientOfThermalExpansion_box.text())
+            inputs['soil_unit_weight'] = float(self.ui.SoilUnitWeight_box.text())
+            inputs['modulus_of_soil_reaction'] = float(self.ui.ModulusOfSoilReaction_box.text())
+            inputs['resilient_modulus'] = float(self.ui.ResilientModulus_box.text())
+            inputs['operating_pressure'] = float(self.ui.OperatingPressure_box.text())
+            inputs['impact_factor'] = float(self.ui.impactFactor_box.text())
+            inputs['design_factor'] = float(self.ui.designFactor_box.text())
+            inputs['longitudinal_joint_factor'] = float(self.ui.LongitudinalJointFactor_box.text())
+            inputs['installation_temperature'] = float(self.ui.InstallationTemperature_box.text())
+            inputs['operating_temperature'] = float(self.ui.OperatingTemperature_box.text())
+            inputs['design_wheel_load_single_axle'] = float(self.ui.DesignWheelLoadFromSingleAxle_box.text())
+            inputs['design_wheel_load_tandem_axle'] = float(self.ui.DesignWheelLoadFromtandemAxle_box.text())
+            inputs['youngs_modulus'] = float(self.ui.YongsModulus_box.text())
+            inputs['poissons_ratio'] = float(self.ui.PoissonsRatio_box.text())
+            inputs['coefficient_of_thermal_expansion'] = float(self.ui.CoefficientOfThermalExpansion_box.text())
 
-            # Earth Load and Cyclic Stress Factors
-            earth_load_stiffness_factor = float(self.ui.EarthLoadStiffnessFactor_box.text())
-            earth_load_burial_factor = float(self.ui.earthLoadBurialFactor_box.text())
-            earth_load_excavation_factor = float(self.ui.EarthLoadExcavationFactor_box.text())
-            stiffness_factor_khh = float(self.ui.StiffnessFactorKhh_box.text())
-            geometry_factor_ghh = float(self.ui.GeometryFactorGHh_box.text())
-            stiffness_factor_klh = float(self.ui.StifnessFactorKLh_box.text())
-            geometry_factor_glh = float(self.ui.geometryFactorGLh_box.text())
-            road_pavement_type_factor = float(self.ui.RoadPavementFactor_box.text())
-            road_axle_configuration_factor = float(self.ui.RoadAxleConfigurationFactor_box.text())
-            radial_stress = float(self.ui.RadialStress_box.text()) # S3
-            fatigue_endurance_girth_yield = float(self.ui.FatigueEnduranceofGirthYield_box.text())
-            fatigue_endurance_longitudinal_weld = float(self.ui.FatigueEnduranceofLongitudinalWeld_box.text())
+            inputs['earth_load_stiffness_factor'] = float(self.ui.EarthLoadStiffnessFactor_box.text())
+            inputs['earth_load_burial_factor'] = float(self.ui.earthLoadBurialFactor_box.text())
+            inputs['earth_load_excavation_factor'] = float(self.ui.EarthLoadExcavationFactor_box.text())
+            inputs['stiffness_factor_khh'] = float(self.ui.StiffnessFactorKhh_box.text())
+            inputs['geometry_factor_ghh'] = float(self.ui.GeometryFactorGHh_box.text())
+            inputs['stiffness_factor_klh'] = float(self.ui.StifnessFactorKLh_box.text())
+            inputs['geometry_factor_glh'] = float(self.ui.geometryFactorGLh_box.text())
+            inputs['road_pavement_type_factor'] = float(self.ui.RoadPavementFactor_box.text())
+            inputs['road_axle_configuration_factor'] = float(self.ui.RoadAxleConfigurationFactor_box.text())
+            inputs['radial_stress'] = float(self.ui.RadialStress_box.text())
+            inputs['fatigue_endurance_girth_yield'] = float(self.ui.FatigueEnduranceofGirthYield_box.text())
+            inputs['fatigue_endurance_longitudinal_weld'] = float(self.ui.FatigueEnduranceofLongitudinalWeld_box.text())
 
         except ValueError as e:
-            QtWidgets.QMessageBox.warning(self, "Input Error", f"Please enter valid numerical values for all input fields. Error: {e}")
+            QtWidgets.QMessageBox.warning(self, "Input Error", f"Please ensure all numerical input fields are filled with valid numbers. Error: {e}")
             return
         except Exception as e:
-            QtWidgets.QMessageBox.critical(self, "Unexpected Error", f"An unexpected error occurred while reading inputs: {e}")
+            QtWidgets.QMessageBox.critical(self, "Unexpected Error", f"An unexpected error occurred while preparing inputs: {e}")
             return
 
-        # 2. Perform calculations (from your provided script, with corrections)
-        print("Performing calculations...")
+        # Show loading dialog
+        self.loading_dialog = QtWidgets.QDialog(self)
+        self.loading_dialog.setWindowTitle("Calculating...")
+        self.loading_dialog.setModal(True) # Make it modal to block interaction with main window
+        layout = QtWidgets.QVBoxLayout()
+        label = QtWidgets.QLabel("Calculating, please wait for 5 seconds...") # Updated text
+        label.setAlignment(QtCore.Qt.AlignCenter)
+        layout.addWidget(label)
+        self.loading_dialog.setLayout(layout)
+        self.loading_dialog.setFixedSize(300, 100) # Fixed size for the dialog
+        self.loading_dialog.show() # Show non-blocking
 
-        # Pipe Wall Thickness Including CA
-        pipe_wall_thickness_including_ca = (pipe_wall_thickness - corrosion_allowance)
-        self.ui.PipeWallThicknessIncludingCA_box.setText(str(round(pipe_wall_thickness_including_ca, 3)))
-        print(f"Pipe Wall Thickness Including CA (tw): {pipe_wall_thickness_including_ca} mm")
+        # Create and start the worker thread
+        self.calculation_worker = CalculationWorker(inputs)
+        self.calculation_worker.calculation_finished.connect(self.handle_calculation_finished)
+        self.calculation_worker.calculation_error.connect(self.handle_calculation_error)
+        self.calculation_worker.start() # Start the thread
 
-        # Bored Diameter
-        bored_diameter = 0
-        if self.consider_bored_diameter_in_calc:
-            bored_diameter = pipe_outside_diameter + 51
-        else:
-            bored_diameter = pipe_outside_diameter
-        self.ui.BoredDiameter_box.setText(str(round(bored_diameter, 3)))
-        print(f"Bored Diameter (Bd): {bored_diameter} mm")
+    def handle_calculation_finished(self, results):
+        """
+        Slot to receive results from the worker thread and update the UI.
+        """
+        print("Calculation finished in thread. Updating UI...")
+        # Hide loading dialog
+        if self.loading_dialog:
+            self.loading_dialog.accept() # Close the dialog
+            self.loading_dialog = None
 
-        # Ratios (for informational purposes, not directly used in subsequent stress calcs in provided snippet)
-        thickness_to_diameter_ratio = (pipe_wall_thickness_including_ca / pipe_outside_diameter)
-        thickness_to_diameter_ratio = round(thickness_to_diameter_ratio, 5)
-        print(f"Thickness to Diameter Ratio: {thickness_to_diameter_ratio}")
+        # Update UI with results
+        self.ui.PipeWallThicknessIncludingCA_box.setText(str(round(results['pipe_wall_thickness_including_ca'], 3)))
+        self.ui.BoredDiameter_box.setText(str(round(results['bored_diameter'], 3)))
+        self.ui.barlowStress_box.setText(str(results['barlow_stress']))
+        self.ui.StressDuetoEarthLoad_box.setText(str(results['stress_due_to_earth_load']))
+        self.ui.CyclicCircumferentialStress_box.setText(str(results['cyclic_circumferential_stress']))
+        self.ui.CyclicLongitudinalStress_box.setText(str(results['cyclic_longitudinal_stress']))
+        self.ui.Circumferential_stress_box.setText(str(round(results['circumferential_stress_s1'], 3)))
+        self.ui.Longitudinal_Stress_box.setText(str(round(results['longitudinal_stress_s2'], 3)))
+        self.ui.Effective_stress_box.setText(str(results['effective_stress']))
 
-        ratio_of_bore_diameter_and_pipe_diameter = (bored_diameter / pipe_outside_diameter)
-        ratio_of_bore_diameter_and_pipe_diameter = round(ratio_of_bore_diameter_and_pipe_diameter, 2)
-        print(f"Ratio of Bore Diameter and Pipe Diameter: {ratio_of_bore_diameter_and_pipe_diameter}")
-
-        ratio_of_pipe_dept_and_bore_diameter = (depth_of_cover * 1000) / bored_diameter
-        ratio_of_pipe_dept_and_bore_diameter = round(ratio_of_pipe_dept_and_bore_diameter, 3)
-        print(f"Ratio of Pipe Depth and Bore Diameter: {ratio_of_pipe_dept_and_bore_diameter}")
-
-        # Applied Design Surface Pressure
-        # Note: 0.093 might represent an area in m^2, leading to kN/m^2 (kPa)
-        # Division by 1000 converts kPa to MPa
-        applied_design_surface_pressure = round(design_wheel_load_tandem_axle / 0.093) / 1000
-        print(f"Applied Design Surface Pressure: {applied_design_surface_pressure} MPa")
-
-        # A) Barlow Stress (S_Hi)
-        # Corrected formula: S_Hi = (P * (D - t_w)) / (2 * t_w)
-        barlow_stress = 0
-        if pipe_wall_thickness_including_ca != 0:
-            barlow_stress = (operating_pressure * (pipe_outside_diameter - pipe_wall_thickness_including_ca)) / (2 * pipe_wall_thickness_including_ca)
-        else:
-            QtWidgets.QMessageBox.warning(self, "Calculation Warning", "Pipe Wall Thickness Including CA is zero, Barlow Stress cannot be calculated (division by zero). Setting to 0.")
-        barlow_stress = round(barlow_stress, 3)
-        self.ui.barlowStress_box.setText(str(barlow_stress))
-        print(f"Barlow Stress (S_Hi): {barlow_stress} MPa")
-
-        f_e_smys = (design_factor * longitudinal_joint_factor * specified_minimum_yield_strength)
-        print(f"F_E_SMYS (Allowable Stress for Barlow Check): {f_e_smys} MPa")
-
-        # B) Circumferential Stress due to Earth Load (S_He)
-        # Note: Division by 1_000_000 converts kN/m^2*mm to MPa
-        stress_due_to_earth_load = (earth_load_stiffness_factor * earth_load_burial_factor * earth_load_excavation_factor * soil_unit_weight * pipe_outside_diameter) / 1_000_000
-        stress_due_to_earth_load = round(stress_due_to_earth_load, 3)
-        self.ui.StressDuetoEarthLoad_box.setText(str(stress_due_to_earth_load))
-        print(f"Stress Due to Earth Load (S_He): {stress_due_to_earth_load} MPa")
-
-        # C) Cyclic Stresses
-        cyclic_circumferential_stress = (stiffness_factor_khh * geometry_factor_ghh * road_pavement_type_factor * road_axle_configuration_factor * impact_factor * applied_design_surface_pressure)
-        cyclic_circumferential_stress = round(cyclic_circumferential_stress, 3)
-        self.ui.CyclicCircumferentialStress_box.setText(str(cyclic_circumferential_stress))
-        print(f"Cyclic Circumferential Stress (ΔS_Hh): {cyclic_circumferential_stress} MPa")
-
-        cyclic_longitudinal_stress = (stiffness_factor_klh * geometry_factor_glh * road_pavement_type_factor * road_axle_configuration_factor * impact_factor * applied_design_surface_pressure)
-        cyclic_longitudinal_stress = round(cyclic_longitudinal_stress, 3)
-        self.ui.CyclicLongitudinalStress_box.setText(str(cyclic_longitudinal_stress))
-        print(f"Cyclic Longitudinal Stress (ΔS_Lh): {cyclic_longitudinal_stress} MPa")
-
-        # D) Circumferential Stress due to Internal Pressurization (S1 and S2)
-        circumferential_stress_s1 = stress_due_to_earth_load + cyclic_circumferential_stress + barlow_stress
-        longitudinal_stress_s2 = cyclic_longitudinal_stress - youngs_modulus * coefficient_of_thermal_expansion * (operating_temperature - installation_temperature) + poissons_ratio * (stress_due_to_earth_load + barlow_stress)
-        self.ui.Circumferential_stress_box.setText(str(round(circumferential_stress_s1, 3)))
-        self.ui.Longitudinal_Stress_box.setText(str(round(longitudinal_stress_s2, 3)))
-        print(f"Circumferential Stress (S1): {circumferential_stress_s1} MPa")
-        print(f"Longitudinal Stress (S2): {longitudinal_stress_s2} MPa")
-
-        # E) Principle Stress (Effective Stress - Von Mises equivalent stress)
-        # Radial_Stress is taken from input S3
-        effective_stress = math.sqrt(1/2*((circumferential_stress_s1 - longitudinal_stress_s2)**2 + \
-                                         (longitudinal_stress_s2 - radial_stress)**2 + \
-                                         (radial_stress - circumferential_stress_s1)**2))
-        effective_stress = round(effective_stress, 3)
-        self.ui.Effective_stress_box.setText(str(effective_stress))
-        print(f"Effective Stress (S_eff): {effective_stress} MPa")
-
-        # 3. Update Result Window and Criteria Checks
+        # Update Radio Buttons
         self._uncheck_all_radio_buttons() # Clear previous checks
 
-        # Barlow Stress Criteria Check
-        if barlow_stress <= f_e_smys:
+        if results['barlow_stress'] <= results['f_e_smys']:
             self.ui.BarlowSafe_radioButton.setChecked(True)
-            print("Barlow Stress Check: SAFE")
         else:
             self.ui.BarlowNotSafe_radioButton.setChecked(True)
-            print("Barlow Stress Check: NOT SAFE")
 
-        # Principle Stress Criteria Check
-        if effective_stress <= specified_minimum_yield_strength * design_factor:
+        if results['effective_stress'] <= results['specified_minimum_yield_strength'] * results['design_factor']:
             self.ui.PrincipleSafe_radioButton.setChecked(True)
-            print("Principle Stress Check: SAFE")
         else:
             self.ui.PrincipleNotSafe_raadioButton.setChecked(True)
-            print("Principle Stress Check: NOT SAFE")
 
-        # F) Fatigue Checks
-        # Girth Welds Criteria Check
-        if cyclic_longitudinal_stress <= fatigue_endurance_girth_yield * design_factor:
+        if results['cyclic_longitudinal_stress'] <= results['fatigue_endurance_girth_yield'] * results['design_factor']:
             self.ui.FatigueSafe_radioButton.setChecked(True)
-            print("Girth Weld Criteria Check: SAFE")
         else:
             self.ui.FatigueNotSafeGirthWeld_radiButton.setChecked(True)
-            print("Girth Weld Criteria Check: NOT SAFE")
 
-        # Longitudinal Welds Check
-        if cyclic_circumferential_stress <= fatigue_endurance_longitudinal_weld * design_factor:
+        if results['cyclic_circumferential_stress'] <= results['fatigue_endurance_longitudinal_weld'] * results['design_factor']:
             self.ui.FatigueCheckLongitudinalYields_Safe.setChecked(True)
-            print("Longitudinal Welds Criteria Check: SAFE")
         else:
             self.ui.FatigueCheckLongitudinalYields_NotSafe.setChecked(True)
-            print("Longitudinal Welds Criteria Check: NOT SAFE")
 
-        # 4. Print all inputs to console (as requested)
-        self.print_all_inputs_to_console()
-        print("--- Calculation Complete ---")
+        self.print_all_inputs_to_console() # Print inputs after successful calculation
+        print("--- Calculation and UI Update Complete ---")
+
+    def handle_calculation_error(self, error_message):
+        """
+        Slot to receive error messages from the worker thread and display them.
+        """
+        print(f"Calculation Error: {error_message}")
+        # Hide loading dialog
+        if self.loading_dialog:
+            self.loading_dialog.accept() # Close the dialog
+            self.loading_dialog = None
+        QtWidgets.QMessageBox.critical(self, "Calculation Error", error_message)
 
 
 # Main execution block
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+
+    # Show the loading screen first
+    loading_screen = LoadingScreen()
+    loading_screen.show()
+    loading_screen.start_loading() # Start the progress bar animation
+
+    # Use a QTimer to open the main window after the loading screen duration
+    # This timer is separate from the progress bar timer to ensure the main window
+    # opens only after the full 5 seconds, regardless of how fast the progress bar fills.
+    main_window_timer = QtCore.QTimer()
+    main_window_timer.setSingleShot(True) # Ensure it only runs once
+    main_window_timer.timeout.connect(lambda: main_window.show())
+    main_window_timer.timeout.connect(lambda: loading_screen.close()) # Close loading screen when main window opens
+
+    # Start the timer to open the main window after 5 seconds
+    main_window_timer.start(5000) # 5000 milliseconds = 5 seconds
+
+    # Initialize the main window, but don't show it yet
     main_window = MyMainWindow()
-    main_window.show()
+
     sys.exit(app.exec_())
