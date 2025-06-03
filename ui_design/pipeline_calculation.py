@@ -1,8 +1,18 @@
 import math
 
+# Add this new helper function
+def calculate_bored_diameter_value(Pipe_Outside_Diameter, Bored_Diameter_Option):
+    """
+    Calculates the Bored Diameter based on the option.
+    """
+    if Bored_Diameter_Option == "Considered":
+        return Pipe_Outside_Diameter + 51
+    else:
+        return Pipe_Outside_Diameter
+
 def calculate_pipeline_crossing(input_data):
 
-    # --- 1) Input Data  ---
+    # --- 1) Input Data   ---
     Steel_grade = input_data.get("Steel_grade")
     Pipe_Type = input_data.get("Pipe_Type")
     Pipe_Outside_Diameter = input_data.get("Pipe_Outside_Diameter")
@@ -12,7 +22,7 @@ def calculate_pipeline_crossing(input_data):
     Corrosion_Allowance = input_data.get("Corrosion_Allowance")
     Bored_Diameter_Option = input_data.get("Bored_Diameter_Option") # "Considered" or "Not considered"
     Soil_Unit_Weight = input_data.get("Soil_Unit_Weight")
-    Soil_Type = input_data.get("Soil_Type") 
+    Soil_Type = input_data.get("Soil_Type")
     Modulus_of_Soil_Reaction = input_data.get("Modulus_of_Soil_Reaction")
     Resilient_Modulus = input_data.get("Resilient_Modulus")
     Operating_Pressure = input_data.get("Operating_Pressure")
@@ -28,7 +38,6 @@ def calculate_pipeline_crossing(input_data):
     Coefficient_of_Thermal_Expansion = input_data.get("Coefficient_of_Thermal_Expansion")
 
     # Fixed values from original script that are not exposed as GUI inputs
-    # (These will be used if not explicitly passed in input_data)
     Earth_Load_Stiffness_Factor = input_data.get("Earth_Load_Stiffness_Factor", 6330)
     Earth_Load_Burial_Factor = input_data.get("Earth_Load_Burial_Factor", 0.47)
     Earth_Load_Excavation_Factor = input_data.get("Earth_Load_Excavation_Factor", 0.91)
@@ -46,11 +55,9 @@ def calculate_pipeline_crossing(input_data):
     # Pipe Wall Thickness Including CA
     Pipe_Wall_Thickness_Including_CA = (Pipe_Wall_Thickness - Corrosion_Allowance)
 
-    # Bored Diameter based on option
-    if Bored_Diameter_Option == "Considered":
-        Bored_Diameter = Pipe_Outside_Diameter + 51
-    else:
-        Bored_Diameter = Pipe_Outside_Diameter
+    # --- Use the helper function here for Bored Diameter ---
+    Bored_Diameter = calculate_bored_diameter_value(Pipe_Outside_Diameter, Bored_Diameter_Option)
+
 
     # Thickness to diameter ratio
     Thickness_to_diameter_ratio = (Pipe_Wall_Thickness_Including_CA / Pipe_Outside_Diameter)
@@ -90,7 +97,8 @@ def calculate_pipeline_crossing(input_data):
     Cyclic_Longitudinal_Stress = round(Cyclic_Longitudinal_Stress, 3)
 
     # D) Circumferential Stress due to Internal Pressurization
-    Radial_Stress = 0  # Hardcoded as per original script
+    Radial_Stress = 0
+    #Youngs_Modulus = 0.21 * 1000  # Converted to MPa
     Circumferential = Stress_due_to_Earth_Load + Cyclic_Circumferential_Stress + Barlow_Stress
     Longitudinal = Cyclic_Longitudinal_Stress - Youngs_Modulus * Coefficient_of_Thermal_Expansion * (Operating_Temperature - Installation_Temperature) + Poissons_Ratio * (Stress_due_to_Earth_Load + Barlow_Stress)
 
@@ -107,13 +115,13 @@ def calculate_pipeline_crossing(input_data):
     # Prepare results for return
     results = {
         "Pipe_Wall_Thickness_Including_CA": Pipe_Wall_Thickness_Including_CA,
-        "Bored_Diameter": Bored_Diameter,
-        "Thickness_to_diameter_ratio": Thickness_to_diameter_ratio, # Not displayed in UI, but kept for completeness
-        "Ratio_of_bore_diameter_and_pipe_diameter": Ratio_of_bore_diameter_and_pipe_diameter, # Not displayed in UI
-        "Ratio_of_pipe_dept_and_bore_diameter": Ratio_of_pipe_dept_and_bore_diameter, # Not displayed in UI
-        "Applied_Design_Surface_Pressure": Applied_Design_Surface_Pressure, # Not displayed in UI
+        "Bored_Diameter": Bored_Diameter, # This will now be calculated by the helper in main_app too
+        "Thickness_to_diameter_ratio": Thickness_to_diameter_ratio,
+        "Ratio_of_bore_diameter_and_pipe_diameter": Ratio_of_bore_diameter_and_pipe_diameter,
+        "Ratio_of_pipe_dept_and_bore_diameter": Ratio_of_pipe_dept_and_bore_diameter,
+        "Applied_Design_Surface_Pressure": Applied_Design_Surface_Pressure,
         "Barlow_Stress": Barlow_Stress,
-        "F_E_SMYS": F_E_SMYS, # Not displayed in UI
+        "F_E_SMYS": F_E_SMYS,
         "Barlow_Stress_Check": Barlow_Stress_Check,
         "Stress_due_to_Earth_Load": Stress_due_to_Earth_Load,
         "Cyclic_Circumferential_Stress": Cyclic_Circumferential_Stress,
