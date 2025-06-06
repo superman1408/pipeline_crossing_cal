@@ -1,11 +1,28 @@
 import sys
 from PyQt5 import QtWidgets, QtCore, QtGui
-import json
-import csv 
-from pipeline_simulation import Ui_MainWindow 
-from pipeline_calculation import calculate_pipeline_crossing, calculate_bored_diameter_value 
+import csv
+from pipeline_simulation import Ui_MainWindow
+from pipeline_calculation import calculate_pipeline_crossing, calculate_bored_diameter_value
 import traceback
 
+# Import the report generation function
+from report_generator import generate_pipeline_report # ADD THIS LINE
+print("Python Executable:", sys.executable)
+print("Python Version:", sys.version)
+print("sys.path:", sys.path) # This shows where Python looks for modules
+# Add this check specifically for reportlab:
+try:
+    from reportlab.lib.styles import getSampleStyleSheet
+    styles = getSampleStyleSheet()
+    print("ReportLab H1 style found:", 'H1' in styles.byName)
+    if 'H1' in styles.byName:
+        print("ReportLab styles loaded successfully.")
+    else:
+        print("ReportLab styles loaded, but H1 is missing. This is unexpected.")
+except ImportError:
+    print("ReportLab module not found!")
+except Exception as e:
+    print(f"Error loading ReportLab styles: {e}")
 class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -42,7 +59,7 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionExit.triggered.connect(self.close)
         self.actionNew.triggered.connect(self.handle_new)
         self.actionOpen.triggered.connect(self.handle_open)
-        self.actionSave_As.triggered.connect(self.handle_save_as) 
+        self.actionSave_As.triggered.connect(self.handle_save_as)
         self.actionReset.triggered.connect(self.handle_reset)
         self.actionGenerate_Report.triggered.connect(self.handle_generate_report)
         self.actionWhat_s_New.triggered.connect(self.handle_whats_new)
@@ -58,6 +75,11 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit_Pipe_outside_diameter.textChanged.connect(self.update_bored_diameter_display)
 
         self.update_bored_diameter_display()
+
+        # Store last calculated results for reporting
+        self.last_calculation_results = {}
+        # Store last collected input data for reporting
+        self.last_input_data = {}
 
 
     def setup_output_fields_style(self):
@@ -133,11 +155,11 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
             value = float(text)
             input_data_dict[input_data_key] = value
             line_edit_widget.setStyleSheet("background-color: white; border: 1px solid gray;")
-            return False 
+            return False
         except ValueError:
             line_edit_widget.setStyleSheet("background-color: white; border: 2px solid red;")
-            has_error_flag_list[0] = True 
-            return True 
+            has_error_flag_list[0] = True
+            return True
 
 
     def update_bored_diameter_display(self):
@@ -152,40 +174,37 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.lineEdit_6Boreddiameter.setStyleSheet("")
         except ValueError:
             self.lineEdit_Pipe_outside_diameter.setStyleSheet("background-color: white; border: 2px solid red;")
-            self.lineEdit_6Boreddiameter.clear() 
-            self.lineEdit_6Boreddiameter.setStyleSheet("") 
+            self.lineEdit_6Boreddiameter.clear()
+            self.lineEdit_6Boreddiameter.setStyleSheet("")
         except Exception as e:
             print(f"Error updating bored diameter: {e}")
             self.lineEdit_Pipe_outside_diameter.setStyleSheet("background-color: white; border: 2px solid red;")
-            self.lineEdit_6Boreddiameter.clear() 
-            self.lineEdit_6Boreddiameter.setStyleSheet("") 
+            self.lineEdit_6Boreddiameter.clear()
+            self.lineEdit_6Boreddiameter.setStyleSheet("")
 
 
     def on_start_button_clicked(self):
-        self.reset_input_field_styles_to_white() 
-        self.reset_results() 
+        self.reset_input_field_styles_to_white()
+        self.reset_results()
         input_data = {}
-        has_overall_error = [False] 
+        has_overall_error = [False]
 
         print("\n--- Reading Input Values from GUI ---")
 
         # --- Read Input Data from GUI with Validation ---
         try:
             steel_grade_text = self.comboBox_Streel_grade.currentText()
+            # Ensure "Fe" is removed only if present, convert to float
             input_data["Steel_grade"] = float(steel_grade_text.replace("Fe ", "")) if "Fe" in steel_grade_text else float(steel_grade_text)
-            print(f"Steel Grade: {input_data['Steel_grade']}")
         except ValueError:
             print(f"Error converting Steel Grade from '{steel_grade_text}': Please select a valid option.")
             has_overall_error[0] = True
+            self.comboBox_Streel_grade.setStyleSheet("border: 2px solid red;") # Highlight error in combo box
 
         input_data["Pipe_Type"] = self.comboBox_2_pipe_type.currentText()
-        print(f"Pipe Type: {input_data['Pipe_Type']}")
-
         input_data["Bored_Diameter_Option"] = self.comboBox_5_Bored_Diameter.currentText()
-        print(f"Bored Diameter Option: {input_data['Bored_Diameter_Option']}")
-
         input_data["Soil_Type"] = self.comboBox_3_Soil_Type.currentText()
-        print(f"Soil Type: {input_data['Soil_Type']}")
+        input_data["Codes_and_standards"] = self.comboBox_4_Codes_and_standards.currentText() # Added for report
 
         # Numeric input fields with validation
         self._validate_and_get_float_input(self.lineEdit_Pipe_outside_diameter, "Pipe_Outside_Diameter", input_data, has_overall_error)
@@ -219,7 +238,15 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self._validate_and_get_float_input(self.lineEdit_24RoadPavementFactor, "Road_Pavement_Type_Factor", input_data, has_overall_error)
         self._validate_and_get_float_input(self.lineEdit_31FatigueEnduranceofGirthYield, "Fatigue_endurance_Limit_of_Girth_yield", input_data, has_overall_error)
         self._validate_and_get_float_input(self.lineEdit_32FatigueEnduranceofLongitudinalWeld, "Fatigue_endurance_Limit_of_Longitudinal_Weld", input_data, has_overall_error)
-        print("--- Input Reading Complete ---")
+
+        # Store a copy of input data for potential report generation
+        self.last_input_data = input_data.copy()
+
+        # Print all collected input data
+        print("\n--- Input Values ---")
+        for key, value in input_data.items():
+            print(f"{key}: {value}")
+        print("--------------------")
 
         # If any validation failed, show an error message and stop
         if has_overall_error[0]:
@@ -232,37 +259,48 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
             print("\n--- Calculation Results ---")
             for key, value in results.items():
                 if "Check" in key or key in ["Barlow_Stress", "Stress_due_to_Earth_Load",
-                                           "Cyclic_Circumferential_Stress", "Cyclic_Longitudinal_Stress",
-                                           "Circumferential_Stress_S1", "Longitudinal_Stress_S2",
-                                           "Effective_Stress_Seff", "Radial_Stress",
-                                           "Pipe_Wall_Thickness_Including_CA", "Bored_Diameter"]:
+                                             "Cyclic_Circumferential_Stress", "Cyclic_Longitudinal_Stress",
+                                             "Circumferential_Stress_S1", "Longitudinal_Stress_S2",
+                                             "Effective_Stress_Seff", "Radial_Stress",
+                                             "Pipe_Wall_Thickness_Including_CA", "Bored_Diameter"]:
                     print(f"{key}: {value}")
-            print("--------------------------")
+
+            # Print the check results to the terminal
+            print("\n--- Criteria Checks ---")
+            print(f"Barlow Stress Check: {results.get('Barlow_Stress_Check', 'N/A')}")
+            print(f"Principle Stress Check: {results.get('Principle_Stress_Check', 'N/A')}")
+            print(f"Girth Weld Criteria Check: {results.get('Girth_Weld_Criteria_Check', 'N/A')}")
+            print(f"Longitudinal Weld Criteria Check: {results.get('Longitudinal_Weld_Criteria_Check', 'N/A')}")
+            print("-----------------------")
+
+            # Store results for report generation
+            self.last_calculation_results = results.copy()
+
 
             # --- Display Results on GUI ---
             self.lineEdit_6PipeWallThickness_including_CA.setText(f"{results['Pipe_Wall_Thickness_Including_CA']:.3f}")
-            self.lineEdit_6PipeWallThickness_including_CA.setStyleSheet("") 
+            self.lineEdit_6PipeWallThickness_including_CA.setStyleSheet("")
 
             # Explicitly update Bored Diameter from main calculation results
             self.lineEdit_6Boreddiameter.setText(f"{results['Bored_Diameter']:.3f}")
-            self.lineEdit_6Boreddiameter.setStyleSheet("") 
+            self.lineEdit_6Boreddiameter.setStyleSheet("")
 
             self.lineEdit_33barlowStress.setText(f"{results['Barlow_Stress']:.3f}")
-            self.lineEdit_33barlowStress.setStyleSheet("") 
+            self.lineEdit_33barlowStress.setStyleSheet("")
             self.lineEdit_35StressDuetoEarthLoad.setText(f"{results['Stress_due_to_Earth_Load']:.3f}")
-            self.lineEdit_35StressDuetoEarthLoad.setStyleSheet("") 
+            self.lineEdit_35StressDuetoEarthLoad.setStyleSheet("")
             self.lineEdit_34_CyclicCircumferentialStress.setText(f"{results['Cyclic_Circumferential_Stress']:.3f}")
-            self.lineEdit_34_CyclicCircumferentialStress.setStyleSheet("") 
+            self.lineEdit_34_CyclicCircumferentialStress.setStyleSheet("")
             self.lineEdit_36CyclicLongitudinalStress.setText(f"{results['Cyclic_Longitudinal_Stress']:.3f}")
-            self.lineEdit_36CyclicLongitudinalStress.setStyleSheet("") 
+            self.lineEdit_36CyclicLongitudinalStress.setStyleSheet("")
             self.lineEdit_30radial_stress.setText(f"{results['Radial_Stress']:.3f}")
-            self.lineEdit_30radial_stress.setStyleSheet("") 
+            self.lineEdit_30radial_stress.setStyleSheet("")
             self.lineEdit_38Circumferential_stress.setText(f"{results['Circumferential_Stress_S1']:.3f}")
-            self.lineEdit_38Circumferential_stress.setStyleSheet("") 
+            self.lineEdit_38Circumferential_stress.setStyleSheet("")
             self.lineEdit_39Longitudinal_stress.setText(f"{results['Longitudinal_Stress_S2']:.3f}")
-            self.lineEdit_39Longitudinal_stress.setStyleSheet("") 
+            self.lineEdit_39Longitudinal_stress.setStyleSheet("")
             self.lineEdit_40Effective_stresses.setText(f"{results['Effective_Stress_Seff']:.3f}")
-            self.lineEdit_40Effective_stresses.setStyleSheet("") 
+            self.lineEdit_40Effective_stresses.setStyleSheet("")
             # --- Update Radio Buttons for Criteria Checks ---
             # Barlow Stress Check
             self.update_radio_button_status(self.radioButton_7_safe, self.radioButton_8_not_safe, results['Barlow_Stress_Check'])
@@ -277,18 +315,21 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         except ZeroDivisionError:
             user_friendly_message = (
-                "A calculation error occurred:"
+                "A calculation error occurred: Division by zero. "
                 "Please check the 'Pipe Wall Thickness', 'Corrosion Allowance', and 'Pipe Outside Diameter' fields. "
+                "Ensure that the resulting pipe internal diameter is not zero or negative."
             )
             QtWidgets.QMessageBox.critical(self, "Calculation Error", user_friendly_message)
-            traceback.print_exc() 
-            self.reset_results() 
+            traceback.print_exc()
+            self.reset_results()
+            self.last_calculation_results = {} # Clear results on error
         except Exception as e:
             # Catch any other unexpected errors
             QtWidgets.QMessageBox.critical(self, "Calculation Error", f"An unexpected error occurred during calculation: {e}")
             print(f"An unexpected error occurred during calculation: {e}") # Log the error message to the console
             traceback.print_exc() # Print full traceback to console for developer
             self.reset_results() # Reset results on error
+            self.last_calculation_results = {} # Clear results on error
 
     def update_radio_button_status(self, safe_rb, not_safe_rb, status):
         if status == "Allowable":
@@ -309,6 +350,7 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.lineEdit_38Circumferential_stress,
             self.lineEdit_39Longitudinal_stress,
             self.lineEdit_40Effective_stresses,
+            self.lineEdit_6Boreddiameter, # Also clear bored diameter output
         ]
         for field in output_fields_to_clear:
             field.clear()
@@ -333,17 +375,24 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.radioButton_7_safe.setChecked(False)
         self.radioButton_8_not_safe.setChecked(False)
         self.buttonGroup_4.setExclusive(True)
+
+        self.last_calculation_results = {} # Clear stored results as well
+        self.last_input_data = {} # Clear stored input data as well
+
     def get_all_input_values(self):
         data = {}
+        # Iterate over _line_edit_inputs to get text values
         for name in self._line_edit_inputs:
             widget = getattr(self, name)
             data[name] = widget.text()
+        # Iterate over _combo_box_inputs to get current text
         for name in self._combo_box_inputs:
             widget = getattr(self, name)
             data[name] = widget.currentText()
         return data
+
     def set_all_input_values(self, data):
-        self.handle_new() 
+        self.handle_new() # Start with a clean slate
         for name in self._line_edit_inputs:
             widget = getattr(self, name)
             if name in data:
@@ -365,26 +414,29 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 widget.setCurrentIndex(0) # Fallback to first item if key not found
                 print(f"Warning: ComboBox '{name}' not found in loaded data. Resetting to default.")
-        
+
         self.update_bored_diameter_display()
+        # After loading, trigger a calculation to populate results if desired
+        # self.on_start_button_clicked() # Uncomment if you want calculations to run immediately after loading
+
     def handle_new(self):
         print("Action: New - Clearing all inputs and results.")
         self.set_initial_input_values()
-        self.reset_results()
+        self.reset_results() # This will clear last_calculation_results and last_input_data
         self.update_bored_diameter_display()
         self.current_file_path = None # Clear current file path as it's a new project
 
     def handle_open(self):
         file_path, _ = QtWidgets.QFileDialog.getOpenFileName(
-            self, "Open Project", "", "CSV Files (*.csv);;All Files (*)" 
+            self, "Open Project", "", "CSV Files (*.csv);;All Files (*)"
         )
         if file_path:
             try:
                 with open(file_path, 'r', newline='') as csvfile:
                     reader = csv.DictReader(csvfile)
                     loaded_data = next(reader)
-                self.set_all_input_values(loaded_data) 
-                self.current_file_path = file_path 
+                self.set_all_input_values(loaded_data)
+                self.current_file_path = file_path
                 QtWidgets.QMessageBox.information(self, "Open Project", f"Project data loaded successfully from:\n{file_path}")
             except FileNotFoundError:
                 QtWidgets.QMessageBox.critical(self, "Open Error", f"File not found: {file_path}")
@@ -400,21 +452,21 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
         """Saves current GUI input data to a new project file (CSV)."""
         file_path, _ = QtWidgets.QFileDialog.getSaveFileName(
             self, "Save Project As", "pipeline_project.csv", # Default file name and extension
-            "CSV Files (*.csv);;All Files (*)" 
+            "CSV Files (*.csv);;All Files (*)"
         )
         if file_path:
             if not file_path.lower().endswith('.csv'):
                 file_path += '.csv'
-            
-            data_to_save = self.get_all_input_values() 
-            
+
+            data_to_save = self.get_all_input_values()
+
             try:
-                with open(file_path, 'w', newline='') as csvfile: 
-                    fieldnames = list(data_to_save.keys()) 
+                with open(file_path, 'w', newline='') as csvfile:
+                    fieldnames = list(data_to_save.keys())
                     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-                    writer.writeheader() 
-                    writer.writerow(data_to_save) 
+                    writer.writeheader()
+                    writer.writerow(data_to_save)
 
                 self.current_file_path = file_path # Set the current file path
                 QtWidgets.QMessageBox.information(self, "Save Project As", f"Project data saved successfully to:\n{file_path}")
@@ -424,24 +476,43 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def handle_reset(self):
         print("Action: Reset - Clearing all inputs and results.")
-        for name in self._line_edit_inputs:
-            field = getattr(self, name)
-            field.clear()
-            field.setStyleSheet("background-color: white; border: 1px solid gray;")
-        for name in self._combo_box_inputs:
-            combo_box = getattr(self, name)
-            if combo_box.count() > 0:
-                combo_box.setCurrentIndex(0) 
-        self.reset_results() 
-        self.update_bored_diameter_display() 
+        # This will also clear self.last_calculation_results and self.last_input_data
+        self.set_initial_input_values()
+        self.reset_results()
+        self.update_bored_diameter_display()
         self.current_file_path = None # Clear current file path as it's a fresh start
+
+    # MODIFIED handle_generate_report
     def handle_generate_report(self):
-        print("Action: Generate Report - Functionality not yet implemented.")
-        QtWidgets.QMessageBox.information(self, "Report", "Generating report functionality to be implemented.")
+        print("Action: Generate Report initiated.")
+
+        # Ensure a calculation has been run and data is available
+        if not self.last_calculation_results or not self.last_input_data:
+            QtWidgets.QMessageBox.warning(self, "Report Generation Failed",
+                                          "No calculation results available to generate a report. "
+                                          "Please run a calculation first.")
+            return
+
+        file_path, _ = QtWidgets.QFileDialog.getSaveFileName(
+            self, "Save Report", "pipeline_report.pdf", # Default file name and extension
+            "PDF Files (*.pdf);;All Files (*)"
+        )
+
+        if file_path:
+            if not file_path.lower().endswith('.pdf'):
+                file_path += '.pdf'
+
+            try:
+                # Call the PDF generation function from report_generator.py
+                generate_pipeline_report(file_path, self.last_input_data, self.last_calculation_results)
+                QtWidgets.QMessageBox.information(self, "Report Generated", f"Report saved successfully to:\n{file_path}")
+            except Exception as e:
+                QtWidgets.QMessageBox.critical(self, "Report Error", f"An error occurred while generating the report:\n{e}")
+                print(f"Error generating report: {traceback.format_exc()}")
 
     def handle_whats_new(self):
         print("Action: What's New? - Functionality not yet implemented.")
-        QtWidgets.QMessageBox.information(self, "What's New?",  "Beta Version 1.0.0 (Released: June , 2025")
+        QtWidgets.QMessageBox.information(self, "What's New?",  "Beta Version 1.0.0 (Released: June , 2025)")
 
     def handle_documentation(self):
         """
@@ -464,7 +535,7 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         msg_box = QtWidgets.QMessageBox()
         msg_box.setWindowTitle("Application Documentation")
-        msg_box.setTextFormat(QtCore.Qt.RichText) 
+        msg_box.setTextFormat(QtCore.Qt.RichText)
         msg_box.setText(documentation_text)
         msg_box.setMinimumSize(700, 700) # Set minimum width and height
         msg_box.setMaximumSize(700, 700) # Set maximum width and height
