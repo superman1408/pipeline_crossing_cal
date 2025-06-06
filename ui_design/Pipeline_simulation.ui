@@ -1662,7 +1662,8 @@
     <item row="0" column="0" colspan="16">
      <widget class="QFrame" name="Header">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.028, y1:0.0455909, x2:0.841, y2:0.966364, stop:0 rgba(169, 237, 255, 107), stop:0.994318 rgba(253, 255, 218, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.028, y1:0.0455909, x2:0.841, y2:0.966364, stop:0 rgba(169, 237, 255, 107), stop:0.994318 rgba(253, 255, 218, 255));
+</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
