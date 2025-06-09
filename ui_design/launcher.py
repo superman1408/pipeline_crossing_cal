@@ -1,7 +1,10 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 import sys
 import main_app # Import main_app at the top to access its global_app_info
+
 class InfinityLoader(QtWidgets.QWidget):
+
+
     def __init__(self):
         super().__init__()
         self.setFixedSize(120, 80)
@@ -10,6 +13,8 @@ class InfinityLoader(QtWidgets.QWidget):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_position)
         self.timer.start(16) 
+
+
     def create_infinity_path(self):
         path = QtGui.QPainterPath()
         center = QtCore.QPointF(self.width() / 2, self.height() / 2)
@@ -22,11 +27,15 @@ class InfinityLoader(QtWidgets.QWidget):
                      center.x() - scale, center.y() + scale,
                      center.x(), center.y())
         return path
+    
+
     def update_position(self):
         self.percent += 0.005
         if self.percent >= 1.0:
             self.percent = 0.0
         self.update()
+
+
     def paintEvent(self, event):
         painter = QtGui.QPainter(self)
         painter.setRenderHint(QtGui.QPainter.Antialiasing)
@@ -38,6 +47,8 @@ class InfinityLoader(QtWidgets.QWidget):
         painter.setPen(QtCore.Qt.NoPen)
         painter.drawEllipse(point, 6, 6)
 class TypingDialog(QtWidgets.QDialog):
+
+
     def __init__(self, message):
         super().__init__()
         self.setWindowFlags(QtCore.Qt.Dialog | QtCore.Qt.FramelessWindowHint)
@@ -55,6 +66,8 @@ class TypingDialog(QtWidgets.QDialog):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_text)
         self.timer.start(30)
+
+
     def update_text(self):
         if self.index < len(self.full_text):
             self.label.setText(self.full_text[:self.index + 1])
@@ -63,6 +76,8 @@ class TypingDialog(QtWidgets.QDialog):
             self.timer.stop()
             QtCore.QTimer.singleShot(5000, self.accept)
 class LoginPage(QtWidgets.QDialog):
+
+
     def __init__(self):
         super().__init__()
         self.setFixedSize(400, 350)
@@ -117,6 +132,8 @@ class LoginPage(QtWidgets.QDialog):
         layout.addWidget(self.login_button)
         self.setLayout(layout)
 class Launcher(QtWidgets.QMainWindow):
+
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("ASHKAM Energy Launcher")
@@ -126,11 +143,15 @@ class Launcher(QtWidgets.QMainWindow):
         self.layout = QtWidgets.QVBoxLayout(self.central_widget)
         self.central_widget.setStyleSheet("background-color: black;")
         self.show_loading_screen()
+
+
     def clear_layout(self):
         while self.layout.count():
             child = self.layout.takeAt(0)
             if child.widget():
                 child.widget().deleteLater()
+
+
     def show_loading_screen(self):
         self.clear_layout()
         self.loader = InfinityLoader()
@@ -147,11 +168,15 @@ class Launcher(QtWidgets.QMainWindow):
         self.layout.addWidget(container)
         self.fade_in_widget(container)
         QtCore.QTimer.singleShot(5000, self.show_typing_dialog)
+
+
     def show_typing_dialog(self):
         self.close()
         self.typing_dialog = TypingDialog("Please wait, the application is being programmed as per your computer resolution.")
         self.typing_dialog.finished.connect(self.show_login_screen)
         self.typing_dialog.exec_()
+
+
     def show_login_screen(self):
         login = LoginPage()
         if login.exec_() == QtWidgets.QDialog.Accepted:
@@ -169,10 +194,14 @@ class Launcher(QtWidgets.QMainWindow):
             # If login is cancelled, gracefully exit the application
             print("Login cancelled. Exiting application.")
             sys.exit(0) # Or QtWidgets.QApplication.quit()
+
+
     def launch_main_app(self):
         self.main_app = main_app.PipelineSimulationApp()
         self.main_app.showMaximized()
         self.close() 
+
+
     def fade_in_widget(self, widget, duration=800):
         effect = QtWidgets.QGraphicsOpacityEffect()
         widget.setGraphicsEffect(effect)
@@ -182,6 +211,8 @@ class Launcher(QtWidgets.QMainWindow):
         anim.setEndValue(1)
         anim.start()
         self.anim = anim
+
+        
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     launcher = Launcher()

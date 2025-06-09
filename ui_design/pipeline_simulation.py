@@ -1096,6 +1096,7 @@ class Ui_MainWindow(object):
         #self.actionWhat_s_New.triggered.connect(MainWindow.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -1241,6 +1242,8 @@ class Ui_MainWindow(object):
         self.actionWhat_s_New.setText(_translate("MainWindow", "What\'s New?"))
         self.actionDocumentation.setText(_translate("MainWindow", "Documentation"))
         self.actionDocumentation.setShortcut(_translate("MainWindow", "F1"))
+
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

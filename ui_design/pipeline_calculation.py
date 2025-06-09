@@ -1,10 +1,7 @@
 import math
 
-# Add this new helper function
+
 def calculate_bored_diameter_value(Pipe_Outside_Diameter, Bored_Diameter_Option):
-    """
-    Calculates the Bored Diameter based on the option.
-    """
     if Bored_Diameter_Option == "Considered":
         return Pipe_Outside_Diameter + 51
     else:
