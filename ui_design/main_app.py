@@ -578,7 +578,7 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def handle_documentation(self):
         """Displays application documentation."""
         documentation_text = """
-        <p><b>Pipeline Crossing Design Application</b></p>
+        <p><b>Pipeline Crossing Simulation Application</b></p>
         <p>This application is designed to assist engineers in the preliminary design and analysis of pipeline crossings, particularly under roads or other infrastructure.</p>
         <p><b>Use Cases:</b></p>
         <ul>
