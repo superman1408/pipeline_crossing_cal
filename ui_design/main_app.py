@@ -298,7 +298,7 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
                     print(f"{key}: {value}")
             print("\n--- Criteria Checks ---")
             print(f"Barlow Stress Check: {results.get('Barlow_Stress_Check', 'N/A')}")
-            print(f"Principle Stress Check: {results.get('Principle_Stress_Check', 'N/A')}")
+            print(f"Principal Stress Check: {results.get('Principal_Stress_Check', 'N/A')}")
             print(f"Girth Weld Criteria Check: {results.get('Girth_Weld_Criteria_Check', 'N/A')}")
             print(f"Longitudinal Weld Criteria Check: {results.get('Longitudinal_Weld_Criteria_Check', 'N/A')}")
             print("-----------------------")
@@ -322,7 +322,7 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # Update radio button statuses
             self.update_radio_button_status(self.radioButton_7_safe, self.radioButton_8_not_safe, results['Barlow_Stress_Check'])
-            self.update_radio_button_status(self.radioButton_6_safe, self.radioButton_5_not_safe, results['Principle_Stress_Check'])
+            self.update_radio_button_status(self.radioButton_6_safe, self.radioButton_5_not_safe, results['Principal_Stress_Check'])
             self.update_radio_button_status(self.radioButton_safe, self.radioButton_2_not_safe, results['Girth_Weld_Criteria_Check'])
             self.update_radio_button_status(self.radioButton_3_safe, self.radioButton_4_not_safe, results['Longitudinal_Weld_Criteria_Check'])
             
@@ -583,7 +583,7 @@ class PipelineSimulationApp(QtWidgets.QMainWindow, Ui_MainWindow):
         <p><b>Use Cases:</b></p>
         <ul>
             <li><b>Preliminary Design:</b> Quickly evaluate different pipe parameters and soil conditions.</li>
-            <li><b>Stress Analysis:</b> Calculate and check various stresses (Barlow, Earth Load, Cyclic, Principle, Effective) against allowable limits.</li>
+            <li><b>Stress Analysis:</b> Calculate and check various stresses (Barlow, Earth Load, Cyclic, Principal, Effective) against allowable limits.</li>
             <li><b>Code Compliance:</b> Perform checks based on selected industry codes and standards (e.g., API 1102).</li>
             <li><b>Report Generation:</b> Generate detailed PDF reports of inputs, outputs, and compliance checks.</li>
             <li><b>Project Management:</b> Save and load project data for future use.</li>

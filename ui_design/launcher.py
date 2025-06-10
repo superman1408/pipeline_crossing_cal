@@ -12,7 +12,7 @@ class InfinityLoader(QtWidgets.QWidget):
         self.percent = 0.0
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_position)
-        self.timer.start(16) 
+        self.timer.start(16)
 
 
     def create_infinity_path(self):
@@ -27,7 +27,7 @@ class InfinityLoader(QtWidgets.QWidget):
                      center.x() - scale, center.y() + scale,
                      center.x(), center.y())
         return path
-    
+
 
     def update_position(self):
         self.percent += 0.005
@@ -74,7 +74,7 @@ class TypingDialog(QtWidgets.QDialog):
             self.index += 1
         else:
             self.timer.stop()
-            QtCore.QTimer.singleShot(5000, self.accept)
+            QtCore.QTimer.singleShot(10000, self.accept) # Increased delay to 10 seconds (10000 ms)
 class LoginPage(QtWidgets.QDialog):
 
 
@@ -167,7 +167,7 @@ class Launcher(QtWidgets.QMainWindow):
         vbox.addStretch()
         self.layout.addWidget(container)
         self.fade_in_widget(container)
-        QtCore.QTimer.singleShot(5000, self.show_typing_dialog)
+        QtCore.QTimer.singleShot(10000, self.show_typing_dialog) # Increased delay to 10 seconds (10000 ms)
 
 
     def show_typing_dialog(self):
@@ -186,8 +186,8 @@ class Launcher(QtWidgets.QMainWindow):
             main_app.global_app_info["username"] = username
             main_app.global_app_info["project_name"] = project
             print("---- User Login Information (Stored Globally) ----")
-            print(f"Username        : {main_app.global_app_info['username']}")
-            print(f"Project Name    : {main_app.global_app_info['project_name']}")
+            print(f"Username          : {main_app.global_app_info['username']}")
+            print(f"Project Name      : {main_app.global_app_info['project_name']}")
             print("--------------------------------------------------")
             self.launch_main_app()
         else:
@@ -199,7 +199,7 @@ class Launcher(QtWidgets.QMainWindow):
     def launch_main_app(self):
         self.main_app = main_app.PipelineSimulationApp()
         self.main_app.showMaximized()
-        self.close() 
+        self.close()
 
 
     def fade_in_widget(self, widget, duration=800):
@@ -212,7 +212,7 @@ class Launcher(QtWidgets.QMainWindow):
         anim.start()
         self.anim = anim
 
-        
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     launcher = Launcher()
