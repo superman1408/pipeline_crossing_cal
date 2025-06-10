@@ -1662,7 +1662,8 @@
     <item row="0" column="0" colspan="16">
      <widget class="QFrame" name="Header">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(11, 120, 130);</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.028, y1:0.0455909, x2:0.841, y2:0.966364, stop:0 rgba(169, 237, 255, 107), stop:0.994318 rgba(253, 255, 218, 255));
+</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1671,13 +1672,26 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="3">
+        <spacer name="horizontalSpacer_16">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>243</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>C:/Users/KIIT0001/Downloads/ashkam.jpg</pixmap>
+          <pixmap>../Assests/ashkam-bg.png</pixmap>
          </property>
         </widget>
        </item>
@@ -1698,25 +1712,12 @@
         <widget class="QLabel" name="PipelineCrossingsimulation_heading">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 255);
-font: 75 14pt &quot;Candara&quot;;background-color: rgb(11, 120, 130);</string>
+font: 75 14pt &quot;Candara&quot;;background-color: qlineargradient(spread:pad, x1:0.028, y1:0.0455909, x2:0.841, y2:0.966364, stop:0 rgba(169, 237, 255, 107), stop:0.994318 rgba(253, 255, 218, 255));</string>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#ffffff;&quot;&gt;Pipeline Crossing Simulation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#000000;&quot;&gt;Pipeline Crossing Simulation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-       </item>
-       <item row="0" column="3">
-        <spacer name="horizontalSpacer_16">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>243</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -2633,9 +2634,9 @@ color: rgb(0, 0, 0);</string>
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_3"/>
  </buttongroups>
 </ui>
