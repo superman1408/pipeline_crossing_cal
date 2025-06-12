@@ -736,7 +736,7 @@ class Ui_MainWindow(object):
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.label = QtWidgets.QLabel(self.Header)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("Assests\ASHKamLogo__1_-removebg-preview.png"))
+        self.label.setPixmap(QtGui.QPixmap("Assests//Ashkam LOGO (300 x 100 px).png"))
         self.label.setObjectName("label")
         self.gridLayout_7.addWidget(self.label, 0, 0, 1, 1)
         spacerItem24 = QtWidgets.QSpacerItem(328, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
