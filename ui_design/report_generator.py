@@ -9,7 +9,7 @@ import datetime
 import os
 
 
-LOGO_PATH = os.path.join("Assests", "ASHKamLogo (1).png")
+LOGO_PATH = os.path.join("Assests", "Ashkam LOGO (300 x 100 px).png")
 
 # Define the ASHKAM brand color
 ASHKAM_BRAND_COLOR = colors.HexColor("#0D325C")

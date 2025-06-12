@@ -110,7 +110,7 @@ class LoginPage(QtWidgets.QDialog):
         """)
         layout = QtWidgets.QVBoxLayout()
         logo = QtWidgets.QLabel()
-        logo.setPixmap(QtGui.QPixmap("Assests/ashkam.png").scaled(60, 60, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
+        logo.setPixmap(QtGui.QPixmap("Assests//Ashkam LOGO (300 x 100 px).png").scaled(60, 60, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
         logo.setAlignment(QtCore.Qt.AlignCenter)
         title = QtWidgets.QLabel("Welcome!")
         title.setObjectName("title")
