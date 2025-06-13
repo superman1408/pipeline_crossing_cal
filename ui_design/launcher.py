@@ -1,6 +1,8 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 import sys
 import main_app # Import main_app at the top to access its global_app_info
+from util import load_pixmap
+
 
 class InfinityLoader(QtWidgets.QWidget):
 
@@ -110,7 +112,7 @@ class LoginPage(QtWidgets.QDialog):
         """)
         layout = QtWidgets.QVBoxLayout()
         logo = QtWidgets.QLabel()
-        logo.setPixmap(QtGui.QPixmap("Assests//Ashkam LOGO (300 x 100 px).png").scaled(60, 60, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
+        logo.setPixmap(load_pixmap("Assests/Ashkam LOGO (300 x 100 px).png").scaled(60, 60, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
         logo.setAlignment(QtCore.Qt.AlignCenter)
         title = QtWidgets.QLabel("Welcome!")
         title.setObjectName("title")
@@ -136,7 +138,7 @@ class Launcher(QtWidgets.QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("ASHKAM Energy Launcher")
+        self.setWindowTitle("Pipeline Crossing Simulation Launcher")
         self.setFixedSize(600, 400)
         self.central_widget = QtWidgets.QWidget()
         self.setCentralWidget(self.central_widget)

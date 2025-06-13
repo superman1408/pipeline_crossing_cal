@@ -7,12 +7,15 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 import datetime
 import os
+from util import get_resource_path
 
 
-LOGO_PATH = os.path.join("Assests", "Ashkam LOGO (300 x 100 px).png")
+
 
 # Define the ASHKAM brand color
 ASHKAM_BRAND_COLOR = colors.HexColor("#0D325C")
+
+LOGO_PATH = get_resource_path("Assests/Ashkam LOGO (300 x 100 px).png")
 
 def _draw_logo(canvas_obj):
     """Helper function to draw the logo on the canvas."""
